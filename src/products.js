@@ -1,0 +1,25 @@
+const products = {
+  'Nourishing Nail Oil': require('../src/images/products/nourishing-nail-oil.png'),
+  'Glass Nail File': require('../src/images/products/glass-nail-file.png'),
+  'Caring Nail Polish Remover': require('../src/images/products/caring-nail-polish-remover.png'),
+  'Nail Hardener (Extra) Strong': require('../src/images/products/nail-harderner-extra-strong.png'),
+  'Cuticle Cream': require('../src/images/products/cuticle-cream.png'),
+  'Ridge Filling Base Coat': require('../src/images/products/ridge-filling-base-coat.png'),
+  'Super Shine': require('../src/images/products/super-shine.png'),
+  'Natural Nail Whitener Pink Glow': require('../src/images/products/natural-nail-whitener-pink-glow.png'),
+  'Bye Bite': require('../src/images/products/bye-bite.png'),
+  'Cuticle Night Repair': require('../src/images/products/cuticle-night-repair.png'),
+  'Protecting Top Coat': require('../src/images/products/protecting-top-coat.png'),
+  'Nail Contour White or Without': require('../src/images/products/nail-contour-white-or-without.png'),
+  'Cuticle Remover': require('../src/images/products/cuticle-remover.png'),
+  'Cuticle Pusher': require('../src/images/products/cuticle-pusher.png'),
+  'Cream for Chapped Skin': require('../src/images/products/cream-for-chapped-skin.png'),
+  'Cure for Chapped Skin': require('../src/images/products/cure-for-chapped-skin.png'),
+  'Daily Protection Hand Cream': require('../src/images/products/hand-cream-daily-protection.png'),
+  '24 Hours Protective Hand Cream': require('../src/images/products/24-hour-protection-hand-cream.png'),
+  'One Minute Manicure': require('../src/images/products/one-minute-manicure.png'),
+  'Hand Cream Extra Anti Aging': require('../src/images/products/hand-creme-extra-anti-aging.png'),
+  'Overnight Hand Mask': require('../src/images/products/overnight-hand-mask.png'),
+};
+
+export default products;
