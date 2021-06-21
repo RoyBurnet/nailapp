@@ -7,6 +7,7 @@ import Login from "../screens/Login";
 import Register from "../screens/Register";
 import Loading from "../screens/Loading";
 import ResetPassword from "../screens/ResetPassword";
+import Playground from "../screens/Playground";
 import { createStackNavigator } from "@react-navigation/stack";
 import Header from "../components/Header";
 
@@ -109,6 +110,11 @@ const HomeStackScreens = () => {
           <HomeStack.Screen
             name="ResetPassword"
             component={ResetPassword}
+            options={customHeader}
+          />
+          <HomeStack.Screen
+            name="Playground"
+            component={Playground}
             options={customHeader}
           />
         </>

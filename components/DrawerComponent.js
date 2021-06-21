@@ -44,6 +44,17 @@ function DrawerComponent(props) {
                 fontSize: 16,
               }}
             />
+            <DrawerItem
+              {...props}
+              label="Playground"
+              onPress={() => {
+                props.navigation.navigate("Playground", { screen: "Playground" });
+              }}
+              labelStyle={{
+                color: "white",
+                fontSize: 16,
+              }}
+            />
           </>
         ) : (
           <>
