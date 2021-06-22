@@ -13,20 +13,20 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
-import {FadeOut} from './Animations'
+import {ZoomInFadeOut} from './Animations'
 
 export default function SelectButton({ handleClick, isSelected = false, id, text }) {
 
   return (
     <React.Fragment>
-      <FadeOut isSelected={isSelected}>
+      <ZoomInFadeOut isSelected={isSelected}>
         <Button
           isSelected={isSelected}
           text={text}
           handleClick={handleClick}
           id={id}
         />
-      </FadeOut>
+      </ZoomInFadeOut>
     </React.Fragment>
   );
 }

@@ -31,24 +31,38 @@ function FadeOut(props) {
   );
 }
 
-function FadeIn(props) {
-  const fadeIn = useRef(new Animated.Value(0)).current;
+function ZoomInFadeOut(props) {
+  const value = useRef(new Animated.Value(1)).current;
 
-  const animationValues = {
-    ref: fadeIn,
-    value: 1,
-    duration: 800,
-  };
+  const animationSequence = [
+    Animated.timing(value, {
+      toValue: 1.05,
+      duration: 100,
+      useNativeDriver: false,
+    }),
+    Animated.timing(value, {
+      toValue: 1,
+      duration: 200,
+      useNativeDriver: false
+    }),
+    Animated.timing(value, {
+      toValue: 0,
+      duration: 200,
+      useNativeDriver: false
+    })
+  ];
 
   useEffect(() => {
-    startAnimation(animationValues);
-  }, []);
+    if (props.isSelected) {
+       Animated.sequence(animationSequence).start()
+    }
+  }, [props.isSelected]);
 
   return (
-    <Animated.View style={{ ...props.style, opacity: animationValues.ref }}>
+    <Animated.View style={{ ...props.style, transform: [{scale: value}]}}>
       {props.children}
     </Animated.View>
   );
 }
 
-export { FadeOut, FadeIn };
+export { FadeOut, ZoomInFadeOut };
