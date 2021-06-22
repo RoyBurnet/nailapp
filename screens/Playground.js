@@ -6,6 +6,8 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
+import ScreenContainer from "../components/ScreenContainer";
+
 import SelectButton from "../components/SelectButton";
 
 export default function Playground({ navigation }) {
@@ -17,21 +19,14 @@ export default function Playground({ navigation }) {
   };
 
   return (
-    <>
-      <ImageBackground
-        source={require("../src/images/nail-background.jpg")}
-        style={styles.backgroundImage}
-      >
-        <View style={styles.container}>
-          <SelectButton
-            id={1}
-            text="text"
-            handleClick={(id) => handleClick(id)}
-            isSelected={isSelected}
-          />
-        </View>
-      </ImageBackground>
-    </>
+    <ScreenContainer>
+      <SelectButton
+        id={1}
+        text="text"
+        handleClick={(id) => handleClick(id)}
+        isSelected={isSelected}
+      />
+    </ScreenContainer>
   );
 }
 
