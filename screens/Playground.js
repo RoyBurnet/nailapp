@@ -12,7 +12,7 @@ import { handen, quest } from "../src/questionaireData";
 
 export default function Playground({ navigation }) {
   const [questions, setQuestions] = useState(handen);
-  const [title, setTitle] = useState('ik heb last van')
+  const [title, setTitle] = useState("ik heb last van");
 
   return (
     <ScreenContainer>

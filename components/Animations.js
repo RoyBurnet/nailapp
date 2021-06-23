@@ -19,10 +19,10 @@ function FadeOut(props) {
   };
 
   useEffect(() => {
-    if (props.isSelected) {
+    if (props.hideList) {
       startAnimation(animationValues);
     }
-  }, [props.isSelected]);
+  }, [props.hideList]);
 
   return (
     <Animated.View style={{ ...props.style, opacity: animationValues.ref }}>
@@ -43,23 +43,23 @@ function ZoomInFadeOut(props) {
     Animated.timing(value, {
       toValue: 1,
       duration: 200,
-      useNativeDriver: false
+      useNativeDriver: false,
     }),
     Animated.timing(value, {
       toValue: 0,
-      duration: 200,
-      useNativeDriver: false
-    })
+      duration: 800,
+      useNativeDriver: false,
+    }),
   ];
 
   useEffect(() => {
     if (props.isSelected) {
-       Animated.sequence(animationSequence).start()
+      Animated.sequence(animationSequence).start();
     }
   }, [props.isSelected]);
 
   return (
-    <Animated.View style={{ ...props.style, transform: [{scale: value}]}}>
+    <Animated.View style={{ ...props.style, transform: [{ scale: value }] }}>
       {props.children}
     </Animated.View>
   );

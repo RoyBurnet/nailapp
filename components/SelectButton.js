@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useContext } from "react";
+import React from "react";
 import {
   View,
   StyleSheet,
   Platform,
   TouchableOpacity,
   Text,
-  Image
+  Image,
 } from "react-native";
 
 import {
@@ -13,35 +13,37 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
-import {ZoomInFadeOut} from './Animations'
+import { ZoomInFadeOut } from "./Animations";
 
-export default function SelectButton({ handleClick, isSelected = false, id, text }) {
-
+export default function SelectButton({
+  handleClick,
+  isSelected = false,
+  id,
+  text,
+}) {
   return (
-    <React.Fragment>
-      <ZoomInFadeOut isSelected={isSelected}>
-        <Button
-          isSelected={isSelected}
-          text={text}
-          handleClick={handleClick}
-          id={id}
-        />
-      </ZoomInFadeOut>
-    </React.Fragment>
+    <Button
+      isSelected={isSelected}
+      text={text}
+      handleClick={handleClick}
+      id={id}
+    />
   );
 }
 
 const Button = ({ isSelected, text, handleClick, id }) => {
   return (
-    <View style={styles.container}>
-      <TouchableOpacity
-        style={[styles.checkBoxItems, isSelected ? styles.isSelected : null]}
-        onPress={() => handleClick(id)}
-      >
-        <CheckBox showMark={isSelected} />
-        <Title text={text} />
-      </TouchableOpacity>
-    </View>
+    <React.Fragment>
+      <ZoomInFadeOut isSelected={isSelected}>
+        <TouchableOpacity
+          style={[styles.checkBoxItems, isSelected ? styles.isSelected : null]}
+          onPress={() => handleClick(id)}
+        >
+          <CheckBox showMark={isSelected} />
+          <Title text={text} />
+        </TouchableOpacity>
+      </ZoomInFadeOut>
+    </React.Fragment>
   );
 };
 
