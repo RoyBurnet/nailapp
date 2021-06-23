@@ -1,53 +1,69 @@
 import React, { useRef, useEffect } from "react";
 import { Animated } from "react-native";
 
-function startAnimation({ ref, value, animationDuration }) {
-  Animated.timing(ref, {
-    toValue: value,
-    duration: animationDuration,
-    useNativeDriver: false,
-  }).start();
-}
-
 function FadeOut(props) {
-  const fadeOut = useRef(new Animated.Value(1)).current;
+  const ref = useRef(new Animated.Value(1)).current;
 
-  const animationValues = {
-    ref: fadeOut,
-    value: 0,
-    animationDuration: 800,
+  const startAnimation = () => {
+    Animated.timing(ref, {
+      toValue: 0,
+      duration: 800,
+      useNativeDriver: false,
+    }).start();
   };
 
   useEffect(() => {
-    if (props.hideList) {
-      startAnimation(animationValues);
+    if (props.triggerFadeOut) {
+      startAnimation();
     }
-  }, [props.hideList]);
+  }, [props.triggerFadeOut]);
 
   return (
-    <Animated.View style={{ ...props.style, opacity: animationValues.ref }}>
+    <Animated.View style={{ ...props.style, opacity: ref }}>
+      {props.children}
+    </Animated.View>
+  );
+}
+
+function FadeIn(props) {
+  const ref = useRef(new Animated.Value(1)).current;
+
+  const startAnimation = () => {
+    Animated.timing(ref, {
+      toValue: 1,
+      duration: 3000,
+      useNativeDriver: false,
+    }).start();
+  };
+
+  useEffect(() => {
+
+  },[])
+
+  return (
+    <Animated.View style={{ ...props.style, opacity: ref }}>
       {props.children}
     </Animated.View>
   );
 }
 
 function ZoomInFadeOut(props) {
-  const value = useRef(new Animated.Value(1)).current;
+  const ref = useRef(new Animated.Value(1)).current;
 
   const animationSequence = [
-    Animated.timing(value, {
+    Animated.timing(ref, {
       toValue: 1.05,
       duration: 100,
       useNativeDriver: false,
     }),
-    Animated.timing(value, {
+    Animated.timing(ref, {
       toValue: 1,
-      duration: 200,
+      duration: 400,
       useNativeDriver: false,
     }),
-    Animated.timing(value, {
+    Animated.timing(ref, {
       toValue: 0,
-      duration: 800,
+      duration: 200,
       useNativeDriver: false,
     }),
   ];
@@ -59,10 +75,10 @@ function ZoomInFadeOut(props) {
   }, [props.isSelected]);
 
   return (
-    <Animated.View style={{ ...props.style, transform: [{ scale: value }] }}>
+    <Animated.View style={{ ...props.style, transform: [{ scale: ref }] }}>
       {props.children}
     </Animated.View>
   );
 }
 
-export { FadeOut, ZoomInFadeOut };
+export { FadeOut, FadeIn, ZoomInFadeOut };

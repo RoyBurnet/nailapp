@@ -1,7 +1,7 @@
 import React from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
-import SelectButton from "./SelectButton";
+import Questionaire from "./Questionaire";
 import { FadeOut } from "./Animations";
 
 import {
@@ -11,40 +11,29 @@ import {
 
 function RenderList({ data, title }) {
   const [listData, setListData] = React.useState(data);
-  const [hideList, setHideList] = React.useState(false)
+  const [triggerFadeOut, setTriggerFadeOut] = React.useState(false);
 
   function selectItem(id) {
     listData.filter((data) => {
       if (data.id === id) {
         data.isSelected = true;
-        setHideList(true);
+        setTriggerFadeOut(true);
       }
     });
     setListData((items) => [...items]);
   }
- 
+
   React.useEffect(() => {
     listData.map((data) => (data.isSelected = false));
   }, [listData]);
 
   return (
     <View style={styles.flatListContainer}>
-      <FadeOut hideList={hideList}>
-        <Text style={styles.listTitle}>{title}</Text>
-        <FlatList
-          data={listData}
-          renderItem={({ item }) => (
-            <SelectButton
-              id={item.id}
-              text={item.typeProblem}
-              handleClick={(id) => selectItem(id)}
-              isSelected={item.isSelected}
-            />
-          )}
-          keyExtractor={(item) => item.id.toString()}
-          showsVerticalScrollIndicator={false}
-          extraData={listData}
-          style={styles.listContainer}
+      <FadeOut triggerFadeOut={triggerFadeOut}>
+        <Questionaire
+          title={title}
+          listData={listData}
+          selectItem={selectItem}
         />
       </FadeOut>
     </View>
@@ -54,18 +43,6 @@ function RenderList({ data, title }) {
 export default RenderList;
 
 const styles = StyleSheet.create({
-  listContainer: {
-    flexDirection: "column",
-    marginTop: hp("15%"),
-    marginBottom: hp("5%"),
-  },
-  listTitle: {
-    position: "absolute",
-    top: hp("10%"),
-    left: wp("30%"),
-    color: "#fff",
-    fontSize: 20,
-  },
   flatListContainer: {
     top: hp("10%"),
     justifyContent: "center",
