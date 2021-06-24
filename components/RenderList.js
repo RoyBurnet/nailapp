@@ -1,26 +1,40 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 
 import Questionaire from "./Questionaire";
-import { FadeOut } from "./Animations";
+import Animation from "./Animations/Animations";
 
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
-function RenderList({ data, title }) {
+function RenderList({ data, title, additionalQuestions }) {
   const [listData, setListData] = React.useState(data);
   const [triggerFadeOut, setTriggerFadeOut] = React.useState(false);
+  const [triggerFadeIn, setTriggerFadeIn] = React.useState(false);
+  const [hasFollowUp, setHasFollowUp] = React.useState(false);
+  const [problemTitle, setProblemTitle] = React.useState("hello");
 
   function selectItem(id) {
     listData.filter((data) => {
       if (data.id === id) {
         data.isSelected = true;
         setTriggerFadeOut(true);
+        nextStep(data);
       }
     });
     setListData((items) => [...items]);
+  }
+
+  function nextStep(data) {
+    if (data.hasAdditionalQuestions) {
+      setTriggerFadeIn(true);
+      setProblemTitle(data.nextQuestion);
+      setTimeout(() => {
+        setHasFollowUp(true);
+      }, 500);
+    }
   }
 
   React.useEffect(() => {
@@ -29,13 +43,26 @@ function RenderList({ data, title }) {
 
   return (
     <View style={styles.flatListContainer}>
-      <FadeOut triggerFadeOut={triggerFadeOut}>
-        <Questionaire
-          title={title}
-          listData={listData}
-          selectItem={selectItem}
-        />
-      </FadeOut>
+      <React.Fragment>
+        <Animation trigger={triggerFadeOut} animationType={"FadeOut"}>
+          <Questionaire
+            title={title}
+            listData={listData}
+            selectItem={selectItem}
+          />
+        </Animation>
+        {hasFollowUp ? (
+          <View style={styles.nextQuest}>
+            <Animation trigger={triggerFadeIn} animationType={"FadeIn"}>
+              <Questionaire
+                title={problemTitle}
+                listData={additionalQuestions}
+                selectItem={selectItem}
+              />
+            </Animation>
+          </View>
+        ) : null}
+      </React.Fragment>
     </View>
   );
 }
@@ -47,5 +74,9 @@ const styles = StyleSheet.create({
     top: hp("10%"),
     justifyContent: "center",
     alignItems: "center",
+  },
+  nextQuest: {
+    position: "absolute",
+    top: hp("0%"),
   },
 });

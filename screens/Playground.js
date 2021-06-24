@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState } from "react";
 
 import {
   widthPercentageToDP as wp,
@@ -12,11 +12,16 @@ import { handen, quest } from "../src/questionaireData";
 
 export default function Playground({ navigation }) {
   const [questions, setQuestions] = useState(handen);
+  const [additonalQuestions, setAdditionalQuestions] = useState(quest);
   const [title, setTitle] = useState("ik heb last van");
 
   return (
     <ScreenContainer>
-      <RenderList data={questions} title={title} />
+      <RenderList
+        data={questions}
+        title={title}
+        additionalQuestions={additonalQuestions}
+      />
     </ScreenContainer>
   );
 }
