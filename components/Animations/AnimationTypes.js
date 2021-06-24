@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { Animated } from "react-native";
 
-function FadeOut(props) {
+export function FadeOut(props) {
   const ref = useRef(new Animated.Value(1)).current;
 
   const startAnimation = () => {
@@ -12,11 +12,12 @@ function FadeOut(props) {
     }).start();
   };
 
+
   useEffect(() => {
-    if (props.triggerFadeOut) {
+    if (props.trigger) {
       startAnimation();
     }
-  }, [props.triggerFadeOut]);
+  }, [props.trigger]);
 
   return (
     <Animated.View style={{ ...props.style, opacity: ref }}>
@@ -25,20 +26,22 @@ function FadeOut(props) {
   );
 }
 
-function FadeIn(props) {
-  const ref = useRef(new Animated.Value(1)).current;
+export function FadeIn(props) {
+  const ref = useRef(new Animated.Value(0)).current;
 
   const startAnimation = () => {
     Animated.timing(ref, {
       toValue: 1,
-      duration: 3000,
+      duration: 800,
       useNativeDriver: false,
     }).start();
   };
 
   useEffect(() => {
-
-  },[])
+    if (props.trigger) {
+      startAnimation();
+    }
+  }, [props.trigger]);
 
   return (
     <Animated.View style={{ ...props.style, opacity: ref }}>
@@ -47,7 +50,7 @@ function FadeIn(props) {
   );
 }
 
-function ZoomInFadeOut(props) {
+export function ZoomInFadeOut(props) {
   const ref = useRef(new Animated.Value(1)).current;
 
   const animationSequence = [
@@ -69,10 +72,10 @@ function ZoomInFadeOut(props) {
   ];
 
   useEffect(() => {
-    if (props.isSelected) {
-      Animated.sequence(animationSequence).start();
+    if (props.trigger) {
+      Animated.sequence(animationSequence).start(() => {});
     }
-  }, [props.isSelected]);
+  }, [props.trigger]);
 
   return (
     <Animated.View style={{ ...props.style, transform: [{ scale: ref }] }}>
@@ -80,5 +83,3 @@ function ZoomInFadeOut(props) {
     </Animated.View>
   );
 }
-
-export { FadeOut, FadeIn, ZoomInFadeOut };

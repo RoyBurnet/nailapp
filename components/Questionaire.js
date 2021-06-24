@@ -40,9 +40,8 @@ const styles = StyleSheet.create({
     marginBottom: hp("5%"),
   },
   listTitle: {
-    position: "absolute",
     top: hp("10%"),
-    left: wp("30%"),
+    textAlign: "center",
     color: "#fff",
     fontSize: 20,
   },

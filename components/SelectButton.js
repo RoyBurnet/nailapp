@@ -13,7 +13,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
-import { ZoomInFadeOut } from "./Animations";
+import  Animation from "./Animations/Animations";
 
 export default function SelectButton({
   handleClick,
@@ -34,7 +34,7 @@ export default function SelectButton({
 const Button = ({ isSelected, text, handleClick, id }) => {
   return (
     <React.Fragment>
-      <ZoomInFadeOut isSelected={isSelected}>
+      <Animation  trigger={isSelected} animationType={"ZoomInFadeOut"}>
         <TouchableOpacity
           style={[styles.checkBoxItems, isSelected ? styles.isSelected : null]}
           onPress={() => handleClick(id)}
@@ -42,7 +42,7 @@ const Button = ({ isSelected, text, handleClick, id }) => {
           <CheckBox showMark={isSelected} />
           <Title text={text} />
         </TouchableOpacity>
-      </ZoomInFadeOut>
+      </Animation>
     </React.Fragment>
   );
 };
