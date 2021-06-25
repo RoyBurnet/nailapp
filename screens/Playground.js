@@ -15,7 +15,7 @@ export default function Playground({ navigation }) {
   const [additonalQuestions, setAdditionalQuestions] = useState(quest);
   const [title, setTitle] = useState("ik heb last van");
 
-  return (
+  return ( 
     <ScreenContainer>
       <RenderList
         data={questions}

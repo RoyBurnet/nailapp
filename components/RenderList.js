@@ -1,7 +1,8 @@
-import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, View, Text, ScrollView } from "react-native";
 
 import Questionaire from "./Questionaire";
+import AdviceComponent from "./AdviceComponent";
 import Animation from "./Animations/Animations";
 
 import {
@@ -10,11 +11,16 @@ import {
 } from "react-native-responsive-screen";
 
 function RenderList({ data, title, additionalQuestions }) {
-  const [listData, setListData] = React.useState(data);
-  const [triggerFadeOut, setTriggerFadeOut] = React.useState(false);
-  const [triggerFadeIn, setTriggerFadeIn] = React.useState(false);
-  const [hasFollowUp, setHasFollowUp] = React.useState(false);
-  const [problemTitle, setProblemTitle] = React.useState("hello");
+  const [listData, setListData] = useState(data);
+  const [additionQuestion, setAdditionQuestion] = useState(additionalQuestions);
+  const [followUpQuestion, setFollowUpQuestion] = useState();
+  const [adviceData, setAdviceData] = useState(data);
+  const [triggerFadeOut, setTriggerFadeOut] = useState(false);
+  const [triggerAdvice, setTriggerAdvice] = useState(false);
+  const [triggerFadeIn, setTriggerFadeIn] = useState(false);
+  const [hasFollowUp, setHasFollowUp] = useState(false);
+  const [renderAdvice, setRenderAdvice] = useState(false);
+  const [problemTitle, setProblemTitle] = useState("");
 
   function selectItem(id) {
     listData.filter((data) => {
@@ -29,20 +35,47 @@ function RenderList({ data, title, additionalQuestions }) {
 
   function nextStep(data) {
     if (data.hasAdditionalQuestions) {
+      setFollowUpQuestion(data.followUpQuestion);
       setTriggerFadeIn(true);
       setProblemTitle(data.nextQuestion);
       setTimeout(() => {
         setHasFollowUp(true);
       }, 500);
+    } else {
+      setAdviceData(data);
+      setRenderAdvice(true);
     }
+  }
+
+  function selectFollowUp(id) {
+    additionQuestion.filter((question) => {
+      if (question.id === id) {
+        question.isSelected = true;
+        setTriggerAdvice(true);
+        setRenderAdvice(true);
+      }
+      fillAdivce(id);
+    });
+    setAdditionQuestion((items) => [...items]);
+  }
+
+  function fillAdivce(id) {
+    followUpQuestion.map((question) => {
+      let item = [];
+      if (question.id === id) {
+        item.push(question);
+        setAdviceData(item);
+      }
+    });
   }
 
   React.useEffect(() => {
     listData.map((data) => (data.isSelected = false));
-  }, [listData]);
+    additionQuestion.map((data) => (data.isSelected = false));
+  }, [listData, additionQuestion]);
 
   return (
-    <View style={styles.flatListContainer}>
+    <View style={styles.screenBackgroundContainer}>
       <React.Fragment>
         <Animation trigger={triggerFadeOut} animationType={"FadeOut"}>
           <Questionaire
@@ -54,13 +87,22 @@ function RenderList({ data, title, additionalQuestions }) {
         {hasFollowUp ? (
           <View style={styles.nextQuest}>
             <Animation trigger={triggerFadeIn} animationType={"FadeIn"}>
-              <Questionaire
-                title={problemTitle}
-                listData={additionalQuestions}
-                selectItem={selectItem}
-              />
+              <Animation trigger={triggerAdvice} animationType={"FadeOut"}>
+                <Questionaire
+                  title={problemTitle}
+                  listData={additionQuestion}
+                  selectItem={selectFollowUp}
+                />
+              </Animation>
             </Animation>
           </View>
+        ) : null}
+        {renderAdvice ? (
+          <Animation trigger={renderAdvice} animationType={"FadeIn"}>
+            <View style={styles.productContainer}>
+              <AdviceComponent data={adviceData} />
+            </View>
+          </Animation>
         ) : null}
       </React.Fragment>
     </View>
@@ -78,5 +120,21 @@ const styles = StyleSheet.create({
   nextQuest: {
     position: "absolute",
     top: hp("0%"),
+  },
+  advice: {
+    position: "absolute",
+    top: hp("90%"),
+  },
+  productContainer: {
+    bottom: hp("80%"),
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: hp("10%"),
+  },
+  screenBackgroundContainer: {
+    flex: 1,
+    flexDirection: "column",
+    marginTop: hp("10%"),
+    alignItems: "center",
   },
 });
