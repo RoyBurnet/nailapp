@@ -21,18 +21,20 @@ export default function AdviceComponent(data) {
   const displayAdvice = followUpAdvice || standardAvice;
 
   const followUpProducts = data?.data[0]?.products;
+  const standardProducts = data?.data?.standardAdvice?.products;
   const url = data?.data[0]?.url;
   const urlStandardAdvice = "https://www.herome.com/";
-  const standardProducts = data?.data?.standardAdvice?.products;
+  const productUrl = url || urlStandardAdvice;
+  const productsItems = followUpProducts || standardProducts;
 
   const handleOpenBrowser = async (url) => {
     let result = await WebBrowser.openBrowserAsync(url);
     setResult(result);
   };
 
-  const fProducts = followUpProducts?.map((item, index) => (
-    <View key={index}>
-      <View style={styles.product}>
+  const ProductTile = ({ item, url, index }) => {
+    return (
+      <View style={styles.product} key={index}>
         <TouchableOpacity onPress={() => handleOpenBrowser(url)}>
           <View style={{ margin: wp("5%"), height: hp("35%") }}>
             <Image source={products[item]} style={styles.productImage} />
@@ -40,26 +42,17 @@ export default function AdviceComponent(data) {
           </View>
         </TouchableOpacity>
       </View>
-    </View>
-  ));
+    );
+  };
 
-  const sProducts = standardProducts?.map((item, index) => (
-    <View style={styles.product} key={index}>
-      <TouchableOpacity onPress={() => handleOpenBrowser(urlStandardAdvice)}>
-        <View style={{ margin: wp("5%"), height: hp("35%") }}>
-          <Image source={products[item]} style={styles.productImage} />
-          <Text style={styles.productName}>{item}</Text>
-        </View>
-      </TouchableOpacity>
-    </View>
+  const mapProducts = productsItems?.map((item, index) => (
+    <ProductTile item={item} url={productUrl} index={index} />
   ));
-
-  const displayProducts = fProducts || sProducts;
 
   return (
     <Animated.ScrollView>
       <Text style={styles.adviceText}>{displayAdvice}</Text>
-      {displayProducts}
+      {mapProducts}
     </Animated.ScrollView>
   );
 }
