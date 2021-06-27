@@ -46,7 +46,7 @@ export default function AdviceComponent(data) {
   };
 
   const mapProducts = productsItems?.map((item, index) => (
-    <ProductTile item={item} url={productUrl} index={index} />
+    <ProductTile item={item} url={productUrl} index={index} key={index} />
   ));
 
   return (
