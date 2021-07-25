@@ -18,12 +18,12 @@ import products from "../src/products";
 export default function AdviceComponent(data) {
   const followUpAdvice = data?.data[0]?.advice;
   const standardAvice = data?.data?.standardAdvice?.advice;
-  const displayAdvice = followUpAdvice || standardAvice;
-
   const followUpProducts = data?.data[0]?.products;
   const standardProducts = data?.data?.standardAdvice?.products;
   const url = data?.data[0]?.url;
   const urlStandardAdvice = "https://www.herome.com/";
+
+  const displayAdvice = followUpAdvice || standardAvice;
   const productUrl = url || urlStandardAdvice;
   const productsItems = followUpProducts || standardProducts;
 
