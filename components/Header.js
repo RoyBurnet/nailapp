@@ -91,9 +91,8 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     justifyContent: "center",
-    alignItems: "flex-start",
     width: wp("50%"),
-    marginLeft: wp("-5%"),
+    marginLeft: wp("-14%"),
     ...Platform.select({
       ios: {
         marginTop: hp("5%"),
@@ -102,20 +101,20 @@ const styles = StyleSheet.create({
   },
   back: {
     justifyContent: "center",
-    alignItems: "center",
     height: hp("5%"),
     width: wp("5%"),
-    marginRight: wp("-15")
+    marginRight: wp("-25")
   },
   burger: {
     width: wp("5%"),
     height: hp("5%"),
     justifyContent: "center",
     alignItems: "center",
+    
   },
   navigationBtn: {
     width: wp("5%"),
-    marginRight: wp("-10%"),
+    marginRight: wp("-25%"),
     resizeMode: "contain",
   },
 });
