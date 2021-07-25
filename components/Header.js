@@ -22,7 +22,7 @@ const ShowBackButton = ({navigation}) => {
     >
       <Image
         style={styles.backButton}
-        source={require("../src/images/backbutton.png")}
+        source={require("../src/images/arrleft.png")}
       />
     </TouchableOpacity>
   );
@@ -39,17 +39,17 @@ export default function Header(props) {
     <View style={{ flex: 1, flexDirection: "column" }}>
       <View style={styles.header}>
         <View style={styles.headerContainer}>
+          <View style={styles.logoContainer}>
+            <Image
+              style={styles.logo}
+              source={require("../src/images/logoBlue.png")}
+            />
+          </View>
           {hideBackButton ? (
             <HideBackButton navigation={navigation} />
           ) : (
             <ShowBackButton navigation={navigation} />
           )}
-          <View style={styles.logoContainer}>
-            <Image
-              style={styles.logo}
-              source={require("../src/images/logo-white.png")}
-            />
-          </View>
 
           <TouchableOpacity
             style={styles.burger}
@@ -57,11 +57,10 @@ export default function Header(props) {
           >
             <Image
               style={styles.navigationBtn}
-              source={require("../src/images/Navigation-hamburger.png")}
+              source={require("../src/images/category.png")}
             />
           </TouchableOpacity>
         </View>
-        <View style={styles.line} />
       </View>
     </View>
   );
@@ -92,21 +91,9 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "flex-start",
     width: wp("50%"),
-    ...Platform.select({
-      ios: {
-        marginTop: hp("5%"),
-      },
-    }),
-  },
-  line: {
-    borderBottomColor: "#fff",
-    borderBottomWidth: 1,
-    width: wp("80%"),
-    alignSelf: "center",
-    justifyContent: "center",
-    alignContent: "center",
+    marginLeft: wp("-5%"),
     ...Platform.select({
       ios: {
         marginTop: hp("5%"),
@@ -118,6 +105,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     height: hp("5%"),
     width: wp("5%"),
+    marginRight: wp("-15")
   },
   burger: {
     width: wp("5%"),
@@ -127,6 +115,7 @@ const styles = StyleSheet.create({
   },
   navigationBtn: {
     width: wp("5%"),
+    marginRight: wp("-10%"),
     resizeMode: "contain",
   },
 });

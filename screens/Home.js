@@ -149,6 +149,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     position: "relative",
     backgroundColor: "#F6FCFF",
+    marginTop: hp('-5%')
   },
   viewAdvies: { flex: 1, alignItems: "center" },
 });
