@@ -47,7 +47,7 @@ export default function Login({ navigation }) {
   return (
     <>
       <ImageBackground
-        source={require("../src/images/start-scherm-backgound.jpg")}
+        source={require("../src/images/login-background.png")}
         style={styles.backgroundImage}
       >
         <View style={styles.loginContainer}>
@@ -57,20 +57,20 @@ export default function Login({ navigation }) {
               source={require("../src/images/HeromeLogo.png")}
             />
             <Text style={styles.headerText}>
-              Jouw persoonlijke hand & nageladvies
+              Jouw hand & nageladvies in één app
             </Text>
           </View>
           <View style={styles.inputFields}>
             <View style={styles.emailTextFieldContainer}>
               <Image
                 style={styles.inputLogo}
-                source={require("../src/images/mail.png")}
+                source={require("../src/images/Message.png")}
               />
               <View>
                 <TextInput
                   style={styles.textField}
-                  placeholder="E-mail"
-                  placeholderTextColor="white"
+                  placeholder="E-mailadres"
+                  placeholderTextColor="#ACC9E8"
                   onChangeText={(email) => setEmail(email)}
                 />
               </View>
@@ -85,7 +85,7 @@ export default function Login({ navigation }) {
                 <TextInput
                   style={styles.textField}
                   placeholder="Wachtwoord"
-                  placeholderTextColor="white"
+                  placeholderTextColor="#ACC9E8"
                   secureTextEntry={true}
                   onChangeText={(password) => setPassword(password)}
                 />
@@ -99,43 +99,54 @@ export default function Login({ navigation }) {
             <Text style={styles.buttonText}>Inloggen</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[styles.buttonContainer, styles.darkblue]}
-            onPress={() => navigation.navigate("Register")}
-          >
-            <Text style={styles.buttonText}>Account Aanmaken</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
             style={styles.lostPassword}
-            onPress={() =>
-              navigation.navigate("ResetPassword")
-            }
+            onPress={() => navigation.navigate("ResetPassword")}
           >
             <Text style={styles.lostPasswordText}>Wachtwoord vergeten?</Text>
           </TouchableOpacity>
           <View style={styles.socialContainer}>
-            <Text style={styles.socialText}>Inloggen via Social Media</Text>
-            <View style={styles.decoration}>
-              <View style={styles.decorationLine} />
-              <View style={styles.decorationDot} />
-              <View style={styles.decorationLine} />
-            </View>
+            <Text style={styles.socialText}>
+              Of meld je aan met Social Media
+            </Text>
             <View style={styles.socialButtonsContainer}>
-              <View style={styles.socialButtons}>
+              <View style={styles.socialButton}>
                 <TouchableOpacity
                   onPress={() =>
                     navigation.navigate("Home", { screen: "HomeScreen" })
                   }
                 >
-                  <Image source={require("../src/images/facebook-icon.png")} />
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() =>
-                    navigation.navigate("Home", { screen: "HomeScreen" })
-                  }
-                >
-                  <Image source={require("../src/images/twitter-icon.png")} />
+                  <Image source={require("../src/images/googleLogo.png")} />
                 </TouchableOpacity>
               </View>
+              <View style={styles.socialButton}>
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate("Home", { screen: "HomeScreen" })
+                  }
+                >
+                  <Image source={require("../src/images/facebookLogo.png")} />
+                </TouchableOpacity>
+              </View>
+              <View style={styles.socialButton}>
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate("Home", { screen: "HomeScreen" })
+                  }
+                >
+                  <Image source={require("../src/images/twitterLogo.png")} />
+                </TouchableOpacity>
+              </View>
+            </View>
+            <View style={styles.noAccountContainer}>
+              <View style={styles.register}>
+                <Text style={styles.registerText}>Nog geen account? </Text>
+                <TouchableOpacity>
+                  <Text style={styles.registerText}>Meld je hier aan.</Text>
+                </TouchableOpacity>
+              </View>
+              <TouchableOpacity>
+                <Text style={styles.withoutRegisterText}>Doorgaan zonder registreren</Text>
+              </TouchableOpacity>
             </View>
             <TouchableOpacity
               style={styles.noRegister}
@@ -186,13 +197,13 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: wp("3.9%"),
     marginTop: hp("1%"),
-    width: wp('80%'),
-    textAlign: 'center'
+    width: wp("80%"),
+    textAlign: "center",
   },
   logo: {
     resizeMode: "contain",
     // width: wp("80%"),
-    height: hp('17%')
+    height: hp("17%"),
   },
   inputFields: {
     marginTop: hp("3%"),
@@ -201,23 +212,33 @@ const styles = StyleSheet.create({
   },
   emailTextFieldContainer: {
     flexDirection: "row",
-    borderBottomWidth: 1,
-    borderColor: "#FFF",
+    borderBottomWidth: 0,
+    backgroundColor: "rgba(255,255,255,0.8)",
+    borderRadius: 10,
+    height: 40,
+    justifyContent: "flex-start",
+    alignItems: "center",
+    paddingLeft: wp("2%"),
+    paddingTop: hp("1%"),
   },
   passwordTextFieldContainer: {
+    marginTop: 10,
     flexDirection: "row",
+    borderBottomWidth: 0,
+    backgroundColor: "rgba(255,255,255,0.8)",
+    borderRadius: 10,
+    height: 40,
+    justifyContent: "flex-start",
     alignItems: "center",
-    borderBottomWidth: 1,
-    borderColor: "#FFF",
-    marginTop: 20,
-    height: 60,
+    paddingLeft: wp("2%"),
+    paddingTop: hp("1%"),
   },
   textField: {
     flex: 1,
     paddingRight: 10,
     paddingBottom: 10,
     paddingLeft: 0,
-    color: "#FFF",
+    color: "#ACC9E8",
   },
   inputLogo: {
     width: 20,
@@ -233,13 +254,14 @@ const styles = StyleSheet.create({
   buttonContainer: {
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#6EBAD9",
+    backgroundColor: "#F8B6CD",
+    borderRadius: 10,
     marginTop: 10,
     width: wp("82%"),
-    height: 50,
+    height: 40,
   },
   lostPassword: {
-    marginTop: 20,
+    marginTop: 10,
     marginBottom: 10,
   },
   lostPasswordText: {
@@ -254,44 +276,41 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "white",
   },
-  darkblue: {
-    backgroundColor: "rgb(13, 46, 104)",
-  },
   socialText: {
     textAlign: "center",
     marginTop: 20,
     fontSize: 16,
     color: "white",
   },
-  decoration: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: 15,
-  },
-  decorationLine: {
-    borderBottomColor: "#fff",
-    borderBottomWidth: 1,
-    width: wp("38%"),
-  },
-  decorationDot: {
-    width: 5,
-    height: 5,
-    borderRadius: 50,
-    backgroundColor: "white",
-    position: "absolute",
-    left: wp("40.5%"),
-    top: hp("-0.3%"),
-  },
   socialButtonsContainer: {
     justifyContent: "center",
     alignItems: "center",
     height: 80,
-  },
-  socialButtons: {
     flexDirection: "row",
-    justifyContent: "space-around",
-    width: wp("30%"),
-    resizeMode: "contain",
+  },
+  socialButton: {
+    height: hp("5%"),
+    width: wp("10%"),
+    backgroundColor: "#FFF",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
+    margin: 10,
+  },
+  noAccountContainer: {
+    height: hp("10%"),
+  },
+  register: {
+    flexDirection: "row",
+    justifyContent: 'center'
+  },
+  registerText: {
+    color: "white"
+  },
+  withoutRegisterText: {
+    color: "white",
+    textAlign: 'center',
+    marginTop: 10
   },
   noRegisterText: {
     color: "#fff",
