@@ -62,12 +62,13 @@ const TitleList = ({ pressHandler }) => {
     <View style={styles.container}>
       <FlatList
         data={tileItems}
-        renderItem={({ item }) => (
+        renderItem={({ item, index }) => (
           <Tile
             title={item.title}
             route={item.route}
             image={item.image}
             pressHandler={pressHandler}
+            keyExtractor={index}
           />
         )}
       />
@@ -149,7 +150,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     position: "relative",
     backgroundColor: "#F6FCFF",
-    marginTop: hp('-5%')
+    marginTop: hp("-5%"),
   },
   viewAdvies: { flex: 1, alignItems: "center" },
 });
