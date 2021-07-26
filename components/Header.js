@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   header: {
     flex: 1,
     width: wp("95%"),
-    marginTop: hp("2%"),
+    marginTop: hp("0%"),
     alignSelf: "center",
     flexDirection: "column",
   },

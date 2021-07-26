@@ -33,24 +33,28 @@ const Tile = ({ pressHandler, title, route, image }) => {
 const TitleList = ({ pressHandler }) => {
   const tileItems = [
     {
+      id: "1",
       title: "Handen",
       image: imageHanden,
       pressHandler: pressHandler,
       route: "HandenQuestionaire",
     },
     {
+      id: "2",
       title: "Nagellak",
       image: imageNagelLak,
       pressHandler: pressHandler,
       route: "NagellakPicker",
     },
     {
+      id: "3",
       title: "Nagels",
       image: imageNagels,
       pressHandler: pressHandler,
       route: "NagelsQuestionaire",
     },
     {
+      id: "4",
       title: "Nagelriemen",
       image: imageNagelRiemen,
       pressHandler: pressHandler,
@@ -62,13 +66,13 @@ const TitleList = ({ pressHandler }) => {
     <View style={styles.container}>
       <FlatList
         data={tileItems}
-        renderItem={({ item, index }) => (
+        renderItem={({ item }) => (
           <Tile
             title={item.title}
             route={item.route}
             image={item.image}
             pressHandler={pressHandler}
-            keyExtractor={index}
+            keyExtractor={item => item.id}
           />
         )}
       />
