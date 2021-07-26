@@ -36,11 +36,11 @@ export default Questionaire;
 const styles = StyleSheet.create({
   listContainer: {
     flexDirection: "column",
-    marginTop: hp("15%"),
+    marginTop: hp("10%"),
     marginBottom: hp("5%"),
   },
   listTitle: {
-    top: hp("10%"),
+    top: hp("5%"),
     textAlign: "center",
     color: "#ACC9E8",
     fontSize: 20,

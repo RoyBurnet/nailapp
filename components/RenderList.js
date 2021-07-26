@@ -10,7 +10,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
-function RenderList({ data, title, additionalQuestions }) {
+function RenderList({ data, title, additionalQuestions, pressHandler }) {
   const [listData, setListData] = useState(data);
   const [additionQuestion, setAdditionQuestion] = useState(additionalQuestions);
   const [followUpQuestion, setFollowUpQuestion] = useState();
@@ -72,6 +72,7 @@ function RenderList({ data, title, additionalQuestions }) {
   React.useEffect(() => {
     listData.map((data) => (data.isSelected = false));
     additionQuestion.map((data) => (data.isSelected = false));
+    renderAdvice ? pressHandler(adviceData) : null;
   }, [listData, additionQuestion]);
 
   return (
@@ -97,13 +98,15 @@ function RenderList({ data, title, additionalQuestions }) {
             </Animation>
           </View>
         ) : null}
-        {renderAdvice ? (
+        {/* {renderAdvice ? (
           <Animation trigger={renderAdvice} animationType={"FadeIn"}>
             <View style={styles.productContainer}>
               <AdviceComponent data={adviceData} />
             </View>
           </Animation>
-        ) : null}
+        ) : null} */}
+
+        {/* {renderAdvice ? pressHandler("AdviesScreen") : null} */}
       </React.Fragment>
     </View>
   );

@@ -117,7 +117,6 @@ const styles = StyleSheet.create({
     margin: wp("2%"),
     borderRadius: 10,
     flexDirection: "row",
-
     shadowColor: "#000",
     shadowOffset: {
       width: 0,

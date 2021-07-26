@@ -4,9 +4,9 @@ import {
   TouchableOpacity,
   Image,
   StyleSheet,
-  ScrollView,
   Text,
   Animated,
+  ImageBackground,
 } from "react-native";
 import {
   widthPercentageToDP as wp,
@@ -36,9 +36,23 @@ export default function AdviceComponent(data) {
     return (
       <View style={styles.product} key={index}>
         <TouchableOpacity onPress={() => handleOpenBrowser(url)}>
-          <View style={{ margin: wp("5%"), height: hp("35%") }}>
-            <Image source={products[item]} style={styles.productImage} />
-            <Text style={styles.productName}>{item}</Text>
+          <View>
+            <ImageBackground
+              source={products[item]}
+              style={styles.productImage}
+            >
+              <View
+                style={{
+                  flex: 1,
+                  flexShrink: 1,
+                  flexDirection: "row",
+                  justifyContent: "flex-start",
+                  alignItems: "flex-end",
+                }}
+              >
+                <Text style={styles.productName}>{item}</Text>
+              </View>
+            </ImageBackground>
           </View>
         </TouchableOpacity>
       </View>
@@ -50,10 +64,13 @@ export default function AdviceComponent(data) {
   ));
 
   return (
-    <Animated.ScrollView>
-      <Text style={styles.adviceText}>{displayAdvice}</Text>
-      {mapProducts}
-    </Animated.ScrollView>
+    <React.Fragment>
+      <View style={styles.adviceTextContainer}>
+        <Text style={[styles.adviceText, styles.title]}>Ons Advies</Text>
+        <Text style={styles.adviceText}>{displayAdvice}</Text>
+      </View>
+      <Animated.ScrollView>{mapProducts}</Animated.ScrollView>
+    </React.Fragment>
   );
 }
 
@@ -65,30 +82,48 @@ const styles = StyleSheet.create({
     marginBottom: hp("10%"),
   },
   product: {
-    margin: wp("8%"),
-    height: hp("40%"),
-    backgroundColor: "#fff",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "center",
+    width: wp("90%"),
+    height: wp("60%"),
+    margin: wp("2%"),
+    borderRadius: 10,
+    backgroundColor: "#9EC9E9",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 3.84,
   },
   productImage: {
-    flex: 1,
-    width: null,
-    height: null,
-    resizeMode: "contain",
+    width: wp("25%"),
+    height: hp("25%"),
+    resizeMode: "cover",
   },
   productName: {
-    color: "#002b64",
-    fontWeight: "bold",
-    margin: hp("5%"),
-    textAlign: "center",
+    color: "#FFF",
+    left: wp("-25%"),
+    fontSize: 25,
+    width: wp("40%"),
   },
-  adviceText: {
-    color: "#fff",
-    fontSize: 15,
+  adviceTextContainer: {
+    height: hp("10%"),
+    marginTop: hp("15%"),
+    width: wp("90%"),
     justifyContent: "center",
     margin: wp("5%"),
-    marginLeft: wp("8%"),
-    marginRight: wp("8%"),
-    backgroundColor: "#6EBAD9",
     padding: 10,
+  },
+  adviceText: {
+    color: "#ACC9E8",
+    fontSize: 20,
+  },
+  title: {
+    marginBottom: 10,
+    fontSize: 30,
   },
 });
