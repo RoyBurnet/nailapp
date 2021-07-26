@@ -3,12 +3,14 @@ import ScreenContainer from "../components/ScreenContainer";
 import RenderList from "../components/RenderList";
 import { handen, quest } from "../src/questionaireData";
 
+const imageHanden = require("../src/images/handthumb.png");
+
 export default function Handen() {
   return (
-    <ScreenContainer>
+    <ScreenContainer image={imageHanden} title="Handen">
       <RenderList
         data={handen}
-        title={"ik heb last van"}
+        title={"Waar kunnen we je mee helpen?"}
         additionalQuestions={quest}
       />
     </ScreenContainer>

@@ -1,27 +1,51 @@
 import React from "react";
-import { View, ImageBackground, StyleSheet } from "react-native";
+import { View, ImageBackground, StyleSheet, Text } from "react-native";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
-export default function ScreenContainer(props) {
-
+export default function ScreenContainer({ children, image, title }) {
   return (
     <React.Fragment>
-      <ImageBackground
-        source={require("../src/images/nail-background.jpg")}
-        style={styles.backgroundImage}
-      >
-        <View style={styles.container}>{props.children}</View>
-      </ImageBackground>
+      <View style={styles.screenContainer}>
+        <View style={styles.screenImage}>
+          <ImageBackground source={image} style={styles.backgroundImage}>
+            <Text style={styles.screenTitle}>{title}</Text>
+          </ImageBackground>
+        </View>
+        <View style={styles.listContainer}>{children}</View>
+      </View>
     </React.Fragment>
   );
 }
 
 const styles = StyleSheet.create({
-  backgroundImage: {
+  screenContainer: {
     flex: 1,
+    flexDirection: "column",
   },
-  container: {
+  backgroundImage: {
+    width: "100%",
+    height: "100%",
     flex: 1,
+    flexDirection: "row",
+  },
+  screenTitle: {
+    alignSelf: "flex-end",
+    marginBottom: hp("5%"),
+    marginLeft: wp("6%"),
+    fontSize: hp("3%"),
+    color: "white",
+  },
+  screenImage: {
+    flex: 1,
+    backgroundColor: "gray",
+  },
+  listContainer: {
+    flex: 1.5,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#F6FCFF",
   },
 });

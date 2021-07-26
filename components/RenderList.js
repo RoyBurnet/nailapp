@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
   screenBackgroundContainer: {
     flex: 1,
     flexDirection: "column",
-    marginTop: hp("10%"),
+    marginTop: hp("0%"),
     alignItems: "center",
   },
 });

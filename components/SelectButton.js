@@ -13,7 +13,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
-import  Animation from "./Animations/Animations";
+import Animation from "./Animations/Animations";
 
 export default function SelectButton({
   handleClick,
@@ -34,42 +34,25 @@ export default function SelectButton({
 const Button = ({ isSelected, text, handleClick, id }) => {
   return (
     <React.Fragment>
-      <Animation  trigger={isSelected} animationType={"ZoomInFadeOut"}>
+      <Animation trigger={isSelected} animationType={"ZoomInFadeOut"}>
         <TouchableOpacity
           style={[styles.checkBoxItems, isSelected ? styles.isSelected : null]}
           onPress={() => handleClick(id)}
         >
-          <CheckBox showMark={isSelected} />
-          <Title text={text} />
+          <Title text={text} isSelected={isSelected} />
         </TouchableOpacity>
       </Animation>
     </React.Fragment>
   );
 };
 
-const CheckBox = ({ showMark }) => {
-  return (
-    <View style={styles.checkBox}>
-      {showMark ? (
-        <Image
-          source={require("../src/images/check-mark-md.png")}
-          style={styles.checkMark}
-        />
-      ) : null}
-    </View>
-  );
-};
-
-const Title = ({ text }) => <Text style={styles.checkBoxTitle}>{text}</Text>;
+const Title = ({ text, isSelected }) => (
+  <Text style={[styles.checkBoxTitle, isSelected ? styles.isSelected : null]}>
+    {text}
+  </Text>
+);
 
 const styles = StyleSheet.create({
-  checkBox: {
-    width: 40,
-    height: 40,
-    backgroundColor: "#fff",
-    borderRadius: 50,
-    marginRight: 20,
-  },
   checkBoxItems: {
     height: 70,
     width: wp("85%"),
@@ -78,33 +61,29 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingLeft: 10,
     paddingRight: 10,
-    borderRadius: 4,
-    backgroundColor: "rgba(13, 46, 104, 0.8)",
+    borderRadius: 10,
+    backgroundColor: "#fff",
     // eslint-disable-next-line no-undef
     ...Platform.select({
       ios: {
         shadowColor: "#000",
-        shadowOffset: { width: 1, height: 4 },
-        shadowOpacity: 0.2,
+        shadowOffset: { width: 1, height: 0 },
+        shadowOpacity: 0.1,
       },
       android: {
         elevation: 0,
       },
     }),
   },
-  checkMark: {
-    width: 40,
-    height: 40,
-    position: "absolute",
-    top: -5,
-    left: 10,
-  },
   checkBoxTitle: {
     fontSize: wp("5%"),
     fontWeight: "300",
-    color: "#fff",
+    color: "#ACC9E8",
+    flex: 1,
+    textAlign: "center",
   },
   isSelected: {
-    backgroundColor: "#6EBAD9",
+    backgroundColor: "#ACC9E8",
+    color: "#FFF",
   },
 });

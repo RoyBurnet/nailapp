@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   listTitle: {
     top: hp("10%"),
     textAlign: "center",
-    color: "#fff",
+    color: "#ACC9E8",
     fontSize: 20,
   },
 });
