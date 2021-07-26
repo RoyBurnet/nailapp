@@ -54,9 +54,9 @@ const Title = ({ text, isSelected }) => (
 
 const styles = StyleSheet.create({
   checkBoxItems: {
-    height: 70,
+    height: 60,
     width: wp("85%"),
-    margin: 10,
+    margin: 5,
     flexDirection: "row",
     alignItems: "center",
     paddingLeft: 10,
