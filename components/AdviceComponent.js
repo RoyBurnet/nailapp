@@ -41,13 +41,7 @@ export default function AdviceComponent(data) {
               source={products[item]}
               style={styles.productImage}
             >
-              <View
-                style={{
-                  flex: 1,
-                  flexShrink: 1,
-                  flexDirection: "column",
-                }}
-              >
+              <View style={styles.productText}>
                 <Text style={styles.productPrice}>€ 14.50</Text>
                 <Text style={styles.productName}>{item}</Text>
               </View>
@@ -114,6 +108,11 @@ const styles = StyleSheet.create({
     color: "#FFF",
     left: wp("40%"),
     fontSize: 20,
+  },
+  productText: {
+    flex: 1,
+    flexShrink: 1,
+    flexDirection: "column",
   },
   adviceTextContainer: {
     height: hp("10%"),
