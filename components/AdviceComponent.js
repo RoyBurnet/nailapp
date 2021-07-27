@@ -45,11 +45,10 @@ export default function AdviceComponent(data) {
                 style={{
                   flex: 1,
                   flexShrink: 1,
-                  flexDirection: "row",
-                  justifyContent: "flex-start",
-                  alignItems: "flex-end",
+                  flexDirection: "column",
                 }}
               >
+                <Text style={styles.productPrice}>€ 14.50</Text>
                 <Text style={styles.productName}>{item}</Text>
               </View>
             </ImageBackground>
@@ -108,7 +107,13 @@ const styles = StyleSheet.create({
     color: "#FFF",
     left: wp("-25%"),
     fontSize: 25,
-    width: wp("40%"),
+    width: wp("50%"),
+    marginTop: wp("30%"),
+  },
+  productPrice: {
+    color: "#FFF",
+    left: wp("40%"),
+    fontSize: 20,
   },
   adviceTextContainer: {
     height: hp("10%"),
