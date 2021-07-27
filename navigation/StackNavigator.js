@@ -9,6 +9,7 @@ import Loading from "../screens/Loading";
 import ResetPassword from "../screens/ResetPassword";
 import Playground from "../screens/Playground";
 import AdviesScreen from "../screens/AdviesScreen";
+import ProductScreen from "../screens/ProductScreen"
 import { createStackNavigator } from "@react-navigation/stack";
 import Header from "../components/Header";
 
@@ -121,6 +122,11 @@ const HomeStackScreens = () => {
           <HomeStack.Screen
             name="AdviesScreen"
             component={AdviesScreen}
+            options={customHeader}
+          />
+          <HomeStack.Screen
+            name="ProductScreen"
+            component={ProductScreen}
             options={customHeader}
           />
         </>
