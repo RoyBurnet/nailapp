@@ -305,7 +305,20 @@ const data = [
       advice:
         "Wij adviseren onderstaande producten voor een snel herstel van jouw kloven.",
       url: "",
-      prodcuts: ["Cream for Chapped Skin", "Cure for Chapped Skin"],
+      prodcuts: [
+        {
+          name: "Cream for Chapped Skin",
+          image: require("../src/images/products/cream-for-chapped-skin.png"),
+          info: "De rijke samenstelling van ingrediënten beschermt, verzorgt én herstelt de handhuid, waardoor er geen schrale plekken op de huid ontstaan. Bovendien voelt de huid na gebruik fluweelzacht aan. De handcreme bevat o.a. sheabutter, aloë vera, vitamine E en B5, lanoline, bisabolol en allantoïne. Dit stimuleert de wondheling en verhoogt de weerstand van de huid.",
+          price: "€ 14.40",
+        },
+        {
+          name: "Cure for Chapped Skin",
+          image: require("../src/images/products/cure-for-chapped-skin.png"),
+          info: "Door de rijke samenstelling van de Cure For Chapped Skin zorg je ervoor dat ontstane schrale plekken zacht worden en snel genezen. De natuurlijke en huideigen ingrediënten zorgen samen voor een diepe herstellende werking:",
+          price: "€ 12.35",
+        },
+      ],
     },
     nee: {
       title: "Jouw persoonlijke hand- en nageladvies",
@@ -313,9 +326,24 @@ const data = [
         "Wij adviseren onderstaande producten voor een snel herstel van jouw droge handen.",
       url: "",
       products: [
-        "Daily Protection Hand Cream",
-        "24 Hours Protective Hand Cream",
-        "One Minute Manicure",
+        {
+          name: "Daily Protection Hand Cream",
+          image: require("../src/images/products/hand-cream-daily-protection.png"),
+          info: "De handhuid wordt intensief verzorgd met vochtbinders en krijgt stevigheid en glans. De handen voelen weer zacht en soepel aan. Bovendien vertraagt de Hand Cream Daily Protection het proces van vroegtijdige huidveroudering. De crème smeert makkelijk uit, is niet vet en wordt direct door de huid opgenomen. Een goede handcreme voor iedere dag.",
+          price: "€ 7.73",
+        },
+        {
+          name: "24 Hours Protective Hand Cream",
+          image: require("../src/images/products/24-hour-protection-hand-cream.png"),
+          info: "De handcreme laat een ultrafijn laagje achter op de handen, die de huid versterkt en uitdroging voorkomt. Door een hoge zonbeschermingsfactor van de 24 Hour Protective Hand Cream zijn je handen optimaal beschermd tegen de schadelijke invloeden van zonlicht en wordt huidveroudering tegengegaan.",
+          price: "€ 11.28",
+        },
+        {
+          name: "One Minute Manicure",
+          image: require("../src/images/products/one-minute-manicure.png"),
+          info: "Deze natuurlijke handscrub met verzorgende oliën en een verfrissend citroen-/sinaasappelaroma hydrateert en voedt de handen, nagelriemen en nagels. De One Minute Scrub maakt de handen zijdezacht en zorgt tegelijkertijd voor soepele nagelriemen en glanzende nagels. De oranjegekleurde duindoorn, rijk aan antioxidanten, revitaliseert en verbetert de conditie van de huid. En fijn: je kunt de scrub ook gebruiken voor je voeten en lichaam.",
+          price: "€ 14.99",
+        },
       ],
     },
   },

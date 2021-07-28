@@ -12,38 +12,30 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import * as WebBrowser from "expo-web-browser";
-import products from "../src/products";
 
-export default function AdviceComponent(data) {
-  const followUpAdvice = data?.data[0]?.advice;
-  const standardAvice = data?.data?.standardAdvice?.advice;
-  const followUpProducts = data?.data[0]?.products;
-  const standardProducts = data?.data?.standardAdvice?.products;
-  const url = data?.data[0]?.url;
+export default function AdviceComponent({ data, pressHandler }) {
+  const followUpAdvice = data[0]?.advice;
+  const standardAvice = data?.standardAdvice?.advice;
+  const followUpProducts = data[0]?.products;
+  const standardProducts = data?.standardAdvice?.products;
+  const url = data[0]?.url;
   const urlStandardAdvice = "https://www.herome.com/";
 
   const displayAdvice = followUpAdvice || standardAvice;
   const productUrl = url || urlStandardAdvice;
   const productsItems = followUpProducts || standardProducts;
 
-  const handleOpenBrowser = async (url) => {
-    let result = await WebBrowser.openBrowserAsync(url);
-    setResult(result);
-  };
+  const navigateToProductScreen = (item) => pressHandler(item)
 
-  const ProductTile = ({ item, url, index }) => {
+  const ProductTile = ({ item, index }) => {
     return (
       <View style={styles.product} key={index}>
-        <TouchableOpacity onPress={() => handleOpenBrowser(url)}>
+        <TouchableOpacity onPress={() => navigateToProductScreen(item)}>
           <View>
-            <ImageBackground
-              source={products[item]}
-              style={styles.productImage}
-            >
+            <ImageBackground source={item.image} style={styles.productImage}>
               <View style={styles.productText}>
-                <Text style={styles.productPrice}>€ 14.50</Text>
-                <Text style={styles.productName}>{item}</Text>
+                <Text style={styles.productPrice}>{item.price}</Text>
+                <Text style={styles.productName}>{item.name}</Text>
               </View>
             </ImageBackground>
           </View>
@@ -53,7 +45,12 @@ export default function AdviceComponent(data) {
   };
 
   const mapProducts = productsItems?.map((item, index) => (
-    <ProductTile item={item} url={productUrl} index={index} key={index} />
+    <ProductTile
+      item={item}
+      url={productUrl}
+      index={index}
+      key={index}
+    />
   ));
 
   return (

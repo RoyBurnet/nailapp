@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 import Questionaire from "./Questionaire";
-import AdviceComponent from "./AdviceComponent";
 import Animation from "./Animations/Animations";
 
 import {
@@ -98,15 +97,6 @@ function RenderList({ data, title, additionalQuestions, pressHandler }) {
             </Animation>
           </View>
         ) : null}
-        {/* {renderAdvice ? (
-          <Animation trigger={renderAdvice} animationType={"FadeIn"}>
-            <View style={styles.productContainer}>
-              <AdviceComponent data={adviceData} />
-            </View>
-          </Animation>
-        ) : null} */}
-
-        {/* {renderAdvice ? pressHandler("AdviesScreen") : null} */}
       </React.Fragment>
     </View>
   );
