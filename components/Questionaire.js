@@ -6,9 +6,15 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
+import { useFonts } from "expo-font";
+
 import SelectButton from "./SelectButton";
 
 function Questionaire({ title, listData, selectItem }) {
+    let [fontsLoaded] = useFonts({
+      "Gilroy-Bold": require("../assets/fonts/Gilroy-Bold.ttf"),
+    });
+  
   return (
     <React.Fragment>
       <Text style={styles.listTitle}>{title}</Text>
@@ -43,6 +49,7 @@ const styles = StyleSheet.create({
     top: hp("5%"),
     textAlign: "center",
     color: "#ACC9E8",
-    fontSize: 20,
+    fontFamily: "Gilroy-Bold",
+    fontSize: hp("2.5%"),
   },
 });

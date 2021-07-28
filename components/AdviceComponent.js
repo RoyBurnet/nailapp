@@ -2,7 +2,6 @@ import React from "react";
 import {
   View,
   TouchableOpacity,
-  Image,
   StyleSheet,
   Text,
   Animated,
@@ -12,6 +11,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
+import { useFonts } from "expo-font";
 
 export default function AdviceComponent({ data, pressHandler }) {
   const followUpAdvice = data[0]?.advice;
@@ -28,6 +28,12 @@ export default function AdviceComponent({ data, pressHandler }) {
   const navigateToProductScreen = (item) => pressHandler(item)
 
   const ProductTile = ({ item, index }) => {
+
+      let [fontsLoaded] = useFonts({
+        "Gilroy-Bold": require("../assets/fonts/Gilroy-Bold.ttf"),
+        "Gilroy-Regular": require("../assets/fonts/Gilroy-Regular.ttf"),
+      });
+    
     return (
       <View style={styles.product} key={index}>
         <TouchableOpacity onPress={() => navigateToProductScreen(item)}>
@@ -72,6 +78,10 @@ const styles = StyleSheet.create({
     marginBottom: hp("10%"),
   },
   product: {
+    paddingRight: wp("15%"),
+    paddingLeft: wp("5%"),
+    paddingBottom: hp("5%"),
+    paddingTop: hp("5%"),
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
@@ -97,14 +107,16 @@ const styles = StyleSheet.create({
   productName: {
     color: "#FFF",
     left: wp("-25%"),
-    fontSize: 25,
+    fontFamily: "Gilroy-Bold",
+    fontSize: hp("3%"),
     width: wp("50%"),
     marginTop: wp("30%"),
   },
   productPrice: {
+    fontFamily: "Gilroy-Bold",
     color: "#FFF",
     left: wp("40%"),
-    fontSize: 20,
+    fontSize: hp("2.5%"),
   },
   productText: {
     flex: 1,
@@ -112,7 +124,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
   },
   adviceTextContainer: {
-    height: hp("10%"),
+    height: 'auto',
     marginTop: hp("15%"),
     width: wp("90%"),
     justifyContent: "center",
@@ -120,11 +132,12 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   adviceText: {
+    fontFamily: "Gilroy-Bold",
     color: "#ACC9E8",
-    fontSize: 20,
+    fontSize: hp("2%"),
   },
   title: {
     marginBottom: 10,
-    fontSize: 30,
+    fontSize: hp("3%"),
   },
 });

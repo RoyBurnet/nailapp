@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { useFonts } from "expo-font";
 
 import {
   widthPercentageToDP as wp,
@@ -14,6 +15,11 @@ import {
 } from "react-native-responsive-screen";
 
 export default function ProductScreen({ route }) {
+  let [fontsLoaded] = useFonts({
+    "Gilroy-Bold": require("../assets/fonts/Gilroy-Bold.ttf"),
+    "Gilroy-Regular": require("../assets/fonts/Gilroy-Regular.ttf"),
+  });
+
   const { image, info, name, price } = route.params;
   return (
     <View style={styles.container}>
@@ -27,7 +33,7 @@ export default function ProductScreen({ route }) {
         <Text style={[styles.text, styles.textPrice]}>{price}</Text>
         <Text style={[styles.text, styles.textInfo]}>{info}</Text>
         <TouchableOpacity style={styles.buyBtn}>
-          <Text style={[styles.text, styles.textBtn] }>Koop dit product</Text>
+          <Text style={[styles.text, styles.textBtn]}>Koop dit product</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -66,20 +72,22 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "#FFF",
+    fontFamily: "Gilroy-Bold",
   },
   textName: {
-    fontSize: hp("3%"),
+    fontSize: hp("3.5%"),
   },
   textPrice: {
     fontSize: hp("3%"),
-    marginBottom: hp("1%")
+    marginBottom: hp("1%"),
   },
   textInfo: {
+    fontFamily: "Gilroy-Regular",
     marginTop: hp("1%"),
     fontSize: hp("2%"),
   },
   textBtn: {
-    fontSize: hp('2.5%')
+    fontSize: hp("2.5%"),
   },
   buyBtn: {
     marginTop: hp("5%"),
@@ -88,7 +96,7 @@ const styles = StyleSheet.create({
     margin: 5,
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: 'center',
+    justifyContent: "center",
     paddingLeft: 10,
     paddingRight: 10,
     borderRadius: 10,

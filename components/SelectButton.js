@@ -14,6 +14,7 @@ import {
 } from "react-native-responsive-screen";
 
 import Animation from "./Animations/Animations";
+import { useFonts } from "expo-font";
 
 export default function SelectButton({
   handleClick,
@@ -21,6 +22,11 @@ export default function SelectButton({
   id,
   text,
 }) {
+  let [fontsLoaded] = useFonts({
+    "Gilroy-Bold": require("../assets/fonts/Gilroy-Bold.ttf"),
+    "Gilroy-Regular": require("../assets/fonts/Gilroy-Regular.ttf"),
+  });
+
   return (
     <Button
       isSelected={isSelected}
@@ -76,8 +82,8 @@ const styles = StyleSheet.create({
     }),
   },
   checkBoxTitle: {
+    fontFamily: "Gilroy-Regular",
     fontSize: wp("5%"),
-    fontWeight: "300",
     color: "#ACC9E8",
     flex: 1,
     textAlign: "center",

@@ -5,7 +5,15 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
+import { useFonts } from "expo-font";
+import AppLoading from "expo-app-loading";
+
 export default function ScreenContainer({ children, image, title }) {
+  let [fontsLoaded] = useFonts({
+    "Gilroy-Bold": require("../assets/fonts/Gilroy-Bold.ttf"),
+  });
+  
+   if (!fontsLoaded) return <AppLoading />;
   return (
     <React.Fragment>
       <View style={styles.screenContainer}>
@@ -35,6 +43,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
     marginBottom: hp("5%"),
     marginLeft: wp("6%"),
+    fontFamily: "Gilroy-Bold",
     fontSize: hp("3%"),
     color: "white",
   },

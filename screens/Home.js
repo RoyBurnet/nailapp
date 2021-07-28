@@ -13,6 +13,9 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
+import { useFonts } from "expo-font";
+import AppLoading from "expo-app-loading";
+
 const imageNagels = require("../src/images/nagelsthumb.png");
 const imageNagelRiemen = require("../src/images/nagelriementhumb.jpeg");
 const imageNagelLak = require("../src/images/nagellakthumbail.png");
@@ -65,6 +68,7 @@ const TitleList = ({ pressHandler }) => {
   return (
     <View style={styles.container}>
       <FlatList
+        showsVerticalScrollIndicator={false}
         data={tileItems}
         renderItem={({ item }) => (
           <Tile
@@ -72,7 +76,7 @@ const TitleList = ({ pressHandler }) => {
             route={item.route}
             image={item.image}
             pressHandler={pressHandler}
-            keyExtractor={item => item.id}
+            keyExtractor={(item) => item.id}
           />
         )}
       />
@@ -81,9 +85,16 @@ const TitleList = ({ pressHandler }) => {
 };
 
 export default function Home({ navigation }) {
+  let [fontsLoaded] = useFonts({
+    "Gilroy-Bold": require("../assets/fonts/Gilroy-Bold.ttf"),
+  });
+
   const pressHandler = (route) => {
     navigation.navigate(route);
   };
+
+  if (!fontsLoaded) return <AppLoading />;
+
   return (
     <>
       <View style={styles.homeContainer}>
@@ -137,8 +148,8 @@ const styles = StyleSheet.create({
   category: {
     flex: 1,
     marginBottom: 20,
-    fontSize: 25,
-    fontWeight: "bold",
+    fontFamily: "Gilroy-Bold",
+    fontSize: hp("3%"),
     color: "#fff",
     position: "absolute",
     bottom: 10,
