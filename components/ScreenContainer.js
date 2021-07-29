@@ -6,14 +6,12 @@ import {
 } from "react-native-responsive-screen";
 
 import { useFonts } from "expo-font";
-import AppLoading from "expo-app-loading";
 
 export default function ScreenContainer({ children, image, title }) {
   let [fontsLoaded] = useFonts({
     "Gilroy-Bold": require("../assets/fonts/Gilroy-Bold.ttf"),
   });
   
-   if (!fontsLoaded) return <AppLoading />;
   return (
     <React.Fragment>
       <View style={styles.screenContainer}>

@@ -47,7 +47,7 @@ const TitleList = ({ pressHandler }) => {
       title: "Nagellak",
       image: imageNagelLak,
       pressHandler: pressHandler,
-      route: "NagellakPicker",
+      route: "NagellakSubMenuScreen",
     },
     {
       id: "3",

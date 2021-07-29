@@ -9,7 +9,8 @@ import Loading from "../screens/Loading";
 import ResetPassword from "../screens/ResetPassword";
 import Playground from "../screens/Playground";
 import AdviesScreen from "../screens/AdviesScreen";
-import ProductScreen from "../screens/ProductScreen"
+import ProductScreen from "../screens/ProductScreen";
+import NagellakSubMenuScreen from "../screens/NagellakSubMenuScreen";
 import { createStackNavigator } from "@react-navigation/stack";
 import Header from "../components/Header";
 
@@ -88,6 +89,11 @@ const HomeStackScreens = () => {
             name="HomeScreen"
             component={Home}
             options={hideBackButton}
+          />
+          <HomeStack.Screen
+            name="NagellakSubMenuScreen"
+            component={NagellakSubMenuScreen}
+            options={customHeader}
           />
           <HomeStack.Screen
             name="NagelsQuestionaire"
