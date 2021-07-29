@@ -29,6 +29,28 @@ const customHeader = {
   headerTitle: () => <Header hideBackButton={false} />,
 };
 
+const smallLogoHeader = {
+  headerTransparent: true,
+  headerStyle: {
+    borderBottomWidth: 0,
+  },
+  headerLeft: null,
+  headerTitle: () => (
+    <Header hideBackButton={false} alternativeLogo={true} white={true} />
+  ),
+};
+
+const adviesSchermHeader = {
+  headerTransparent: true,
+  headerStyle: {
+    borderBottomWidth: 0,
+  },
+  headerLeft: null,
+  headerTitle: () => (
+    <Header hideBackButton={false} alternativeLogo={true} white={false} />
+  ),
+};
+
 const hideBackButton = {
   headerTransparent: true,
   headerStyle: {
@@ -93,22 +115,22 @@ const HomeStackScreens = () => {
           <HomeStack.Screen
             name="NagellakSubMenuScreen"
             component={NagellakSubMenuScreen}
-            options={customHeader}
+            options={smallLogoHeader}
           />
           <HomeStack.Screen
             name="NagelsQuestionaire"
             component={NagelsQuestionaire}
-            options={customHeader}
+            options={smallLogoHeader}
           />
           <HomeStack.Screen
             name="HandenQuestionaire"
             component={HandenQuestionaire}
-            options={customHeader}
+            options={smallLogoHeader}
           />
           <HomeStack.Screen
             name="NagelreimenQuestionaire"
             component={NagelreimenQuestionaire}
-            options={customHeader}
+            options={smallLogoHeader}
           />
           <HomeStack.Screen
             name="NagellakPicker"
@@ -128,12 +150,12 @@ const HomeStackScreens = () => {
           <HomeStack.Screen
             name="AdviesScreen"
             component={AdviesScreen}
-            options={customHeader}
+            options={adviesSchermHeader}
           />
           <HomeStack.Screen
             name="ProductScreen"
             component={ProductScreen}
-            options={customHeader}
+            options={smallLogoHeader}
           />
         </>
       ) : (

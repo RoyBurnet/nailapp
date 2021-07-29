@@ -13,17 +13,16 @@ import {
 } from "react-native-responsive-screen";
 
 import { useNavigation } from "@react-navigation/native";
+import { Qlogo, Backbtn, Menubtn, Mainlogo } from "./SvgImages/Icons";
 
-const ShowBackButton = ({navigation}) => {
+const ShowBackButton = ({ navigation, colors }) => {
+  const color = colors ? "#FFF" : "#ACC9E8";
   return (
     <TouchableOpacity
       style={styles.back}
       onPress={() => navigation.goBack(null)}
     >
-      <Image
-        style={styles.backButton}
-        source={require("../src/images/arrleft.png")}
-      />
+      <Backbtn color={color} />
     </TouchableOpacity>
   );
 };
@@ -32,33 +31,48 @@ const HideBackButton = () => {
   return <TouchableOpacity style={styles.back}></TouchableOpacity>;
 };
 
+const BigLogo = () => {
+  return (
+    <View style={styles.logoContainer}>
+      <Mainlogo style={styles.logo} />
+    </View>
+  );
+};
+
+const SmallLogo = (props) => {
+  const color = props.color ? "#FFF" : "#ACC9E8";
+  return (
+    <View style={styles.smallLogoContainer}>
+      <Qlogo color={color} />
+    </View>
+  );
+};
+
+const MenuButton = (props) => {
+  const color = props.color ? "#FFF" : "#ACC9E8";
+  return <Menubtn color={color} style={styles.navigationBtn} />;
+}
+
 export default function Header(props) {
-  const { hideBackButton } = props;
+  const { hideBackButton, alternativeLogo, white } = props;
   const navigation = useNavigation();
   return (
     <View style={{ flex: 1, flexDirection: "column" }}>
       <View style={styles.header}>
         <View style={styles.headerContainer}>
-          <View style={styles.logoContainer}>
-            <Image
-              style={styles.logo}
-              source={require("../src/images/logoBlue.png")}
-            />
-          </View>
+          {alternativeLogo ? <SmallLogo color={white} /> : <BigLogo />}
           {hideBackButton ? (
             <HideBackButton navigation={navigation} />
           ) : (
-            <ShowBackButton navigation={navigation} />
+            <ShowBackButton navigation={navigation} colors={white} />
           )}
 
           <TouchableOpacity
             style={styles.burger}
             onPress={() => navigation.openDrawer()}
           >
-            <Image
-              style={styles.navigationBtn}
-              source={require("../src/images/category.png")}
-            />
+            <MenuButton  color={white} />
+            
           </TouchableOpacity>
         </View>
       </View>
@@ -88,6 +102,11 @@ const styles = StyleSheet.create({
     maxWidth: wp("30%"),
     height: hp("15%"),
     resizeMode: "contain",
+    ...Platform.select({
+      ios: {
+        marginTop: hp("-6%"),
+      },
+    }),
   },
   logoContainer: {
     justifyContent: "center",
@@ -99,18 +118,27 @@ const styles = StyleSheet.create({
       },
     }),
   },
+  smallLogoContainer: {
+    justifyContent: "center",
+    width: wp("50%"),
+    marginLeft: wp("-14%"),
+    ...Platform.select({
+      ios: {
+        marginTop: hp("2%"),
+      },
+    }),
+  },
   back: {
     justifyContent: "center",
     height: hp("5%"),
     width: wp("5%"),
-    marginRight: wp("-25")
+    marginRight: wp("-25"),
   },
   burger: {
     width: wp("5%"),
     height: hp("5%"),
     justifyContent: "center",
     alignItems: "center",
-    
   },
   navigationBtn: {
     width: wp("5%"),
