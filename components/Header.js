@@ -28,7 +28,11 @@ const ShowBackButton = ({ navigation, colors }) => {
 };
 
 const HideBackButton = () => {
-  return <TouchableOpacity style={styles.back}></TouchableOpacity>;
+  return (
+    <TouchableOpacity
+      style={styles.back}
+    ></TouchableOpacity>
+  );
 };
 
 const BigLogo = () => {
@@ -131,14 +135,14 @@ const styles = StyleSheet.create({
   back: {
     justifyContent: "center",
     height: hp("5%"),
-    width: wp("5%"),
-    marginRight: wp("-25"),
+    width: wp("6%"),
+    marginRight: wp("-15"),
   },
   burger: {
     width: wp("5%"),
     height: hp("5%"),
     justifyContent: "center",
-    alignItems: "center",
+    marginRight: wp('-15%'),
   },
   navigationBtn: {
     width: wp("5%"),
