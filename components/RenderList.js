@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
 
 import Questionaire from "./Questionaire";
 import Animation from "./Animations/Animations";
@@ -98,6 +98,12 @@ function RenderList({ data, title, additionalQuestions, pressHandler }) {
           </View>
         ) : null}
       </React.Fragment>
+      {/* <TouchableOpacity
+        onPress={() => console.log("vorige btn")}
+        style={styles.vorigeBtnContainer}
+      >
+        <Text>Vorige</Text>
+      </TouchableOpacity> */}
     </View>
   );
 }
@@ -130,4 +136,9 @@ const styles = StyleSheet.create({
     marginTop: hp("0%"),
     alignItems: "center",
   },
+  vorigeBtnContainer: {
+    marginTop: wp('-40%'),
+    width: wp('80%'),
+    backgroundColor: 'purple'
+  }
 });

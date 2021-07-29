@@ -28,11 +28,7 @@ const ShowBackButton = ({ navigation, colors }) => {
 };
 
 const HideBackButton = () => {
-  return (
-    <TouchableOpacity
-      style={styles.back}
-    ></TouchableOpacity>
-  );
+  return <TouchableOpacity style={styles.back}></TouchableOpacity>;
 };
 
 const BigLogo = () => {
@@ -55,7 +51,7 @@ const SmallLogo = (props) => {
 const MenuButton = (props) => {
   const color = props.color ? "#FFF" : "#ACC9E8";
   return <Menubtn color={color} style={styles.navigationBtn} />;
-}
+};
 
 export default function Header(props) {
   const { hideBackButton, alternativeLogo, white } = props;
@@ -75,8 +71,7 @@ export default function Header(props) {
             style={styles.burger}
             onPress={() => navigation.openDrawer()}
           >
-            <MenuButton  color={white} />
-            
+            <MenuButton color={white} />
           </TouchableOpacity>
         </View>
       </View>
@@ -142,7 +137,7 @@ const styles = StyleSheet.create({
     width: wp("5%"),
     height: hp("5%"),
     justifyContent: "center",
-    marginRight: wp('-15%'),
+    marginRight: wp("-15%"),
   },
   navigationBtn: {
     width: wp("5%"),

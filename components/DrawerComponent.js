@@ -8,10 +8,15 @@ import { DrawerItem } from "@react-navigation/drawer";
 import AuthContext from "../context/auth/AuthContext";
 
 import React, { useContext } from "react";
+import { useFonts } from "expo-font";
 
 function DrawerComponent(props) {
   const authContext = useContext(AuthContext);
   const { isSignIn, signOut } = authContext;
+
+  useFonts({
+    "Gilroy-Bold": require("../assets/fonts/Gilroy-Bold.ttf"),
+  });
 
   const handleSignOut = async () => {
     await signOut();
@@ -29,8 +34,9 @@ function DrawerComponent(props) {
                 props.navigation.navigate("Home", { screen: "HomeScreen" });
               }}
               labelStyle={{
-                color: "white",
-                fontSize: 16,
+                fontFamily: "Gilroy-Bold",
+                color: "#ACC9E8",
+                fontSize: hp("2.5%"),
               }}
             />
             <DrawerItem
@@ -40,19 +46,23 @@ function DrawerComponent(props) {
                 handleSignOut();
               }}
               labelStyle={{
-                color: "white",
-                fontSize: 16,
+                fontFamily: "Gilroy-Bold",
+                color: "#ACC9E8",
+                fontSize: hp("2.5%"),
               }}
             />
             <DrawerItem
               {...props}
               label="Playground"
               onPress={() => {
-                props.navigation.navigate("Playground", { screen: "Playground" });
+                props.navigation.navigate("Playground", {
+                  screen: "Playground",
+                });
               }}
               labelStyle={{
-                color: "white",
-                fontSize: 16,
+                fontFamily: "Gilroy-Bold",
+                color: "#ACC9E8",
+                fontSize: hp("2.5%"),
               }}
             />
           </>
@@ -78,9 +88,10 @@ function DrawerComponent(props) {
 
 const styles = StyleSheet.create({
   customDrawerContainer: {
+    color: 'purple',
     flex: 1,
     flexDirection: "column",
-    backgroundColor: "rgb(13, 46, 104)",
+    backgroundColor: "#F7FCFF",
   },
   itemContainer: {
     flex: 1,
