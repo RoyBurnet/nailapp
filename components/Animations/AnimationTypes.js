@@ -1,17 +1,16 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Animated } from "react-native";
 
-export function FadeOut(props) {
-  const ref = useRef(new Animated.Value(1)).current;
+export const FadeOut = (props) => {
+  const ref = useRef(new Animated.Value(props.value)).current;
 
   const startAnimation = () => {
     Animated.timing(ref, {
       toValue: 0,
       duration: 800,
       useNativeDriver: false,
-    }).start();
+    }).start(() => {});
   };
-
 
   useEffect(() => {
     if (props.trigger) {
@@ -24,11 +23,35 @@ export function FadeOut(props) {
       {props.children}
     </Animated.View>
   );
-}
+};
 
 export function FadeIn(props) {
-  const ref = useRef(new Animated.Value(0)).current;
+  const ref = useRef(new Animated.Value(props.value)).current;
 
+  const startAnimation = () => {
+    Animated.timing(ref, {
+      toValue: 1,
+      duration: 800,
+      useNativeDriver: false,
+    }).start();
+  };
+
+  useEffect(() => {
+    if (props.trigger) {
+      console.log(props.trigger)
+      startAnimation();
+    }
+  }, [props.trigger]);
+
+  return (
+    <Animated.View style={{ ...props.style, opacity: ref }}>
+      {props.children}
+    </Animated.View>
+  );
+}
+
+export function FadeIn2(props) {
+  const ref = useRef(new Animated.Value(props.value)).current;
   const startAnimation = () => {
     Animated.timing(ref, {
       toValue: 1,
@@ -50,7 +73,7 @@ export function FadeIn(props) {
   );
 }
 
-export function ZoomInFadeOut(props) {
+export const ZoomInFadeOut = (props) => {
   const ref = useRef(new Animated.Value(1)).current;
 
   const animationSequence = [

@@ -1,9 +1,10 @@
 import React from "react";
-import { ZoomInFadeOut, FadeOut, FadeIn } from "./AnimationTypes";
+import { ZoomInFadeOut, FadeOut, FadeIn, FadeIn2} from "./AnimationTypes";
 
 export default function Animation(props) {
   const componentMapping = {
     FadeIn,
+    FadeIn2,
     FadeOut,
     ZoomInFadeOut,
   };

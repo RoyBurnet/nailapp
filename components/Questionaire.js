@@ -11,10 +11,10 @@ import { useFonts } from "expo-font";
 import SelectButton from "./SelectButton";
 
 function Questionaire({ title, listData, selectItem }) {
-    let [fontsLoaded] = useFonts({
-      "Gilroy-Bold": require("../assets/fonts/Gilroy-Bold.ttf"),
-    });
-  
+  useFonts({
+    "Gilroy-Bold": require("../assets/fonts/Gilroy-Bold.ttf"),
+  });
+
   return (
     <React.Fragment>
       <Text style={styles.listTitle}>{title}</Text>

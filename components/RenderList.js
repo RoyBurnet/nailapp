@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, forwardRef } from "react";
 import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
+import { useIsFocused, useFocusEffect } from "@react-navigation/native";
 
 import Questionaire from "./Questionaire";
 import Animation from "./Animations/Animations";
+import { useFonts } from "expo-font";
 
 import {
   widthPercentageToDP as wp,
@@ -14,28 +16,37 @@ function RenderList({ data, title, additionalQuestions, pressHandler }) {
   const [additionQuestion, setAdditionQuestion] = useState(additionalQuestions);
   const [followUpQuestion, setFollowUpQuestion] = useState();
   const [adviceData, setAdviceData] = useState(data);
-  const [triggerFadeOut, setTriggerFadeOut] = useState(false);
-  const [triggerAdvice, setTriggerAdvice] = useState(false);
-  const [triggerFadeIn, setTriggerFadeIn] = useState(false);
+  const [hideList, setHideList] = useState(false)
+  const [firstQuestionFadeOut, setFirstQuestionFadeOut] = useState(false);
+  const [firstQuestionFadeIn, setFirstQuestionFadeIn] = useState(false);
+  const [followUpQuestionFadeOut, setFollowUpQuestionFadeOut] = useState(false);
+  const [followUpQuestionFadeIn, setFollowUpQuestionFadeIn] = useState(false);
+  const [firstQuestionFadeIn2, setFirstQuestionFadeIn2] = useState(false);
   const [hasFollowUp, setHasFollowUp] = useState(false);
   const [renderAdvice, setRenderAdvice] = useState(false);
   const [problemTitle, setProblemTitle] = useState("");
+
+  const isFocused = useIsFocused();
+
+  useFonts({
+    "Gilroy-Regular": require("../assets/fonts/Gilroy-Regular.ttf"),
+  });
 
   function selectItem(id) {
     listData.filter((data) => {
       if (data.id === id) {
         data.isSelected = true;
-        setTriggerFadeOut(true);
-        nextStep(data);
+        setFirstQuestionFadeOut(true);
+        nextStep(data)
       }
+      setListData((items) => [...items]);
     });
-    setListData((items) => [...items]);
   }
 
   function nextStep(data) {
     if (data.hasAdditionalQuestions) {
       setFollowUpQuestion(data.followUpQuestion);
-      setTriggerFadeIn(true);
+      setFollowUpQuestionFadeIn(true);
       setProblemTitle(data.nextQuestion);
       setTimeout(() => {
         setHasFollowUp(true);
@@ -50,7 +61,7 @@ function RenderList({ data, title, additionalQuestions, pressHandler }) {
     additionQuestion.filter((question) => {
       if (question.id === id) {
         question.isSelected = true;
-        setTriggerAdvice(true);
+        setFollowUpQuestionFadeOut(true);
         setRenderAdvice(true);
       }
       fillAdivce(id);
@@ -68,42 +79,85 @@ function RenderList({ data, title, additionalQuestions, pressHandler }) {
     });
   }
 
+  function resetFirstQuestions() {
+    listData.map((item) => {
+      item.isSelected = false;
+    });
+    setListData((items) => [...items]);
+  }
+
+  function handleBackButtonClick() {
+    resetFirstQuestions();
+    setFollowUpQuestionFadeOut(true);
+    setFirstQuestionFadeIn(true);
+  }
+
   React.useEffect(() => {
-    listData.map((data) => (data.isSelected = false));
-    additionQuestion.map((data) => (data.isSelected = false));
+    console.log("effect triggerd");
     renderAdvice ? pressHandler(adviceData) : null;
-  }, [listData, additionQuestion]);
+    listData.map((data) => (data.isSelected = false));
+  }, [listData, renderAdvice]);
+
+  // React.useEffect(() => {
+  //   listData.map((data) => (data.isSelected = false));
+  //   additionQuestion.map((data) => (data.isSelected = false));
+  //   renderAdvice ? pressHandler(adviceData) : null;
+  // }, [listData, additionQuestion, renderAdvice]);
+
+
+  useFocusEffect(() => {
+    listData.map((data) => (data.isSelected = false));
+  });
 
   return (
     <View style={styles.screenBackgroundContainer}>
       <React.Fragment>
-        <Animation trigger={triggerFadeOut} animationType={"FadeOut"}>
-          <Questionaire
-            title={title}
-            listData={listData}
-            selectItem={selectItem}
-          />
+        <Animation
+          trigger={firstQuestionFadeOut}
+          animationType={"FadeOut"}
+          value={1}
+        >
+          <Animation
+            trigger={firstQuestionFadeIn}
+            animationType={"FadeIn2"}
+            value={1}
+          >
+        <Questionaire
+          title={title}
+          listData={listData}
+          selectItem={selectItem}
+        />
         </Animation>
+        </Animation>
+
         {hasFollowUp ? (
           <View style={styles.nextQuest}>
-            <Animation trigger={triggerFadeIn} animationType={"FadeIn"}>
-              <Animation trigger={triggerAdvice} animationType={"FadeOut"}>
+            <Animation
+              trigger={followUpQuestionFadeIn}
+              animationType={"FadeIn"}
+              value={0}
+            >
+              <Animation
+                trigger={followUpQuestionFadeOut}
+                animationType={"FadeOut"}
+                value={1}
+              >
                 <Questionaire
                   title={problemTitle}
                   listData={additionQuestion}
                   selectItem={selectFollowUp}
                 />
+                <TouchableOpacity
+                  onPress={handleBackButtonClick}
+                  style={styles.vorigeBtnContainer}
+                >
+                  <Text style={styles.vorigeBtnText}>Terug</Text>
+                </TouchableOpacity>
               </Animation>
             </Animation>
           </View>
         ) : null}
       </React.Fragment>
-      {/* <TouchableOpacity
-        onPress={() => console.log("vorige btn")}
-        style={styles.vorigeBtnContainer}
-      >
-        <Text>Vorige</Text>
-      </TouchableOpacity> */}
     </View>
   );
 }
@@ -137,8 +191,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   vorigeBtnContainer: {
-    marginTop: wp('-40%'),
-    width: wp('80%'),
-    backgroundColor: 'purple'
-  }
+    flex: 1,
+    width: wp("85%"),
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  vorigeBtnText: {
+    fontFamily: "Gilroy-Regular",
+    color: "#ACC9E8",
+  },
 });

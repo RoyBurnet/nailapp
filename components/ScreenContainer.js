@@ -8,7 +8,7 @@ import {
 import { useFonts } from "expo-font";
 
 export default function ScreenContainer({ children, image, title }) {
-  let [fontsLoaded] = useFonts({
+  useFonts({
     "Gilroy-Bold": require("../assets/fonts/Gilroy-Bold.ttf"),
   });
   
