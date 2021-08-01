@@ -93,17 +93,10 @@ function RenderList({ data, title, additionalQuestions, pressHandler }) {
   }
 
   React.useEffect(() => {
-    console.log("effect triggerd");
-    renderAdvice ? pressHandler(adviceData) : null;
     listData.map((data) => (data.isSelected = false));
-  }, [listData, renderAdvice]);
-
-  // React.useEffect(() => {
-  //   listData.map((data) => (data.isSelected = false));
-  //   additionQuestion.map((data) => (data.isSelected = false));
-  //   renderAdvice ? pressHandler(adviceData) : null;
-  // }, [listData, additionQuestion, renderAdvice]);
-
+    additionQuestion.map((data) => (data.isSelected = false));
+    renderAdvice ? pressHandler(adviceData) : null;
+  }, [listData, additionQuestion, renderAdvice]);
 
   useFocusEffect(() => {
     listData.map((data) => (data.isSelected = false));
