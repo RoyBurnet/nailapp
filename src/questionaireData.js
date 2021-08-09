@@ -14,7 +14,7 @@ const data = [
     followUpQuestion: [
       {
         id: 0,
-        answer: "ja",
+        typeProblem: "ja",
         isSelected: false,
         title: "Jouw persoonlijke hand- en nageladvies",
         advice:
@@ -43,7 +43,7 @@ const data = [
       },
       {
         id: 1,
-        answer: "nee",
+        typeProblem: "nee",
         isSelected: false,
         title: "Jouw persoonlijke hand- en nageladvies",
         advice:
@@ -93,7 +93,7 @@ const data = [
     followUpQuestion: [
       {
         id: 0,
-        answer: "ja",
+        typeProblem: "ja",
         isSelected: false,
         title: "Jouw persoonlijke hand- en nageladvies",
         advice:
@@ -116,7 +116,7 @@ const data = [
       },
       {
         id: 1,
-        answer: "nee",
+        typeProblem: "nee",
         isSelected: false,
         title: "Jouw persoonlijke hand- en nageladvies",
         advice:
@@ -154,7 +154,7 @@ const data = [
     followUpQuestion: [
       {
         id: 0,
-        answer: "ja",
+        typeProblem: "ja",
         isSelected: false,
         title: "Jouw persoonlijke hand- en nageladvies",
         advice:
@@ -183,7 +183,7 @@ const data = [
       },
       {
         id: 1,
-        answer: "nee",
+        typeProblem: "nee",
         isSelected: false,
         title: "Jouw persoonlijke hand- en nageladvies",
         advice:
@@ -443,7 +443,7 @@ const data = [
     followUpQuestion: [
       {
         id: 0,
-        answer: "ja",
+        typeProblem: "ja",
         isSelected: false,
         title: "Jouw persoonlijke hand- en nageladvies",
         advice:
@@ -466,7 +466,7 @@ const data = [
       },
       {
         id: 1,
-        answer: "nee",
+        typeProblem: "nee",
         isSelected: false,
         title: "Jouw persoonlijke hand- en nageladvies",
         advice:

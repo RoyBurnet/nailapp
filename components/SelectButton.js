@@ -22,7 +22,7 @@ export default function SelectButton({
   id,
   text,
 }) {
-  let [fontsLoaded] = useFonts({
+  useFonts({
     "Gilroy-Bold": require("../assets/fonts/Gilroy-Bold.ttf"),
     "Gilroy-Regular": require("../assets/fonts/Gilroy-Regular.ttf"),
   });
@@ -33,21 +33,20 @@ export default function SelectButton({
       text={text}
       handleClick={handleClick}
       id={id}
+      fadeOut
     />
   );
 }
 
-const Button = ({ isSelected, text, handleClick, id }) => {
+const Button = ({ isSelected, text, handleClick, id, fadeOut }) => {
   return (
     <React.Fragment>
-      <Animation trigger={isSelected} animationType={"ZoomInFadeOut"}>
-        <TouchableOpacity
-          style={[styles.checkBoxItems, isSelected ? styles.isSelected : null]}
-          onPress={() => handleClick(id)}
-        >
-          <Title text={text} isSelected={isSelected} />
-        </TouchableOpacity>
-      </Animation>
+      <TouchableOpacity
+        style={[styles.checkBoxItems, isSelected ? styles.isSelected : null]}
+        onPress={() => handleClick(id)}
+      >
+        <Title text={text} isSelected={isSelected} />
+      </TouchableOpacity>
     </React.Fragment>
   );
 };

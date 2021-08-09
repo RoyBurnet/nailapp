@@ -10,7 +10,7 @@ import { useFonts } from "expo-font";
 
 import SelectButton from "./SelectButton";
 
-function Questionaire({ title, listData, selectItem }) {
+function Questionaire({ title, listData, selectItem, fadeOut }) {
   useFonts({
     "Gilroy-Bold": require("../assets/fonts/Gilroy-Bold.ttf"),
   });
@@ -26,6 +26,7 @@ function Questionaire({ title, listData, selectItem }) {
             text={item.typeProblem}
             handleClick={(id) => selectItem(id)}
             isSelected={item.isSelected}
+            fadOut
           />
         )}
         keyExtractor={(item) => item.id.toString()}
