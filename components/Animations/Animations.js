@@ -1,7 +1,9 @@
 import React from "react";
-import { ZoomInFadeOut, FadeOut, FadeIn, FadeIn2} from "./AnimationTypes";
+import AnimateState from '../../context/animate/AnimateState'
+import { ZoomInFadeOut, FadeOut, FadeIn, FadeIn2 } from "./AnimationTypes";
 
 export default function Animation(props) {
+  
   const componentMapping = {
     FadeIn,
     FadeIn2,
@@ -13,7 +15,9 @@ export default function Animation(props) {
 
   return (
     <React.Fragment>
-      <Component {...props}>{props.children}</Component>
+      <AnimateState>
+        <Component {...props}>{props.children}</Component>
+      </AnimateState>
     </React.Fragment>
   );
 }

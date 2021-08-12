@@ -1,9 +1,10 @@
-import React, { useState, forwardRef } from "react";
+import React, { useState, forwardRef, useContext } from "react";
 import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
 import { useIsFocused, useFocusEffect } from "@react-navigation/native";
 
 import Questionaire from "./Questionaire";
 import Animation from "./Animations/Animations";
+
 import { useFonts } from "expo-font";
 
 import {
@@ -18,6 +19,8 @@ function RenderList({ data, title, pressHandler }) {
   const [hideList, setHideList] = useState(false);
   const [currentStep, setCurrentStep] = useState();
   const [problemTitle, setProblemTitle] = useState("");
+  const [firstListAnimation, setFirstListAnimation] = useState(false);
+  const [secondListAnimation, setSecondListAnimation] = useState(false);
 
   useFonts({
     "Gilroy-Regular": require("../assets/fonts/Gilroy-Regular.ttf"),
@@ -27,8 +30,11 @@ function RenderList({ data, title, pressHandler }) {
     listData.filter((data) => {
       if (data.id === id) {
         data.isSelected = true;
-        setNextStep(data);
-        setHideList(true);
+        setFirstListAnimation(true);
+        setTimeout(() => {
+          setNextStep(data);
+          setHideList(true);
+        }, 800);
       }
       setListData((items) => [...items]);
     });
@@ -43,9 +49,9 @@ function RenderList({ data, title, pressHandler }) {
   function setNextStep(data) {
     if (data.hasAdditionalQuestions) {
       setListDataNextQuestion(data.followUpQuestion);
-      setShowFollowUp(true);
       setProblemTitle(data.nextQuestion);
       setCurrentStep(2);
+      setShowFollowUp(true);
     } else {
       pressHandler([data.standardAdvice]);
       setCurrentStep(1);
@@ -57,39 +63,58 @@ function RenderList({ data, title, pressHandler }) {
   }
 
   useFocusEffect(() => {
-    currentStep === 1 ? setHideList(false) : null;
+    if (currentStep === 1) {
+      setHideList(false);
+      setFirstListAnimation(false);
+    }
+    if (currentStep === 2) {
+      setSecondListAnimation(false);
+    }
   });
 
   function handleBackClick() {
     setShowFollowUp(false);
     setHideList(false);
+    setFirstListAnimation(false);
   }
 
   return (
     <View style={styles.screenBackgroundContainer}>
       <React.Fragment>
         {hideList ? null : (
-          <Questionaire
-            title={title}
-            listData={listData}
-            selectItem={selectItem}
-            fadeOut={true}
-          />
+          <Animation
+            animationType={"FadeOut"}
+            trigger={firstListAnimation}
+            value={1}
+          >
+            <Questionaire
+              title={title}
+              listData={listData}
+              selectItem={selectItem}
+              fadeOut={true}
+            />
+          </Animation>
         )}
         {showFollowUp ? (
           <View style={styles.nextQuest}>
-            <Questionaire
-              title={problemTitle}
-              listData={listDataNextQuestion}
-              selectItem={selectFollowUpItem}
-              fadeOut={false}
-            />
-            <TouchableOpacity
-              onPress={handleBackClick}
-              style={styles.vorigeBtnContainer}
+            <Animation
+              animationType={"FadeOut"}
+              trigger={secondListAnimation}
+              value={1}
             >
-              <Text style={styles.vorigeBtnText}>Terug</Text>
-            </TouchableOpacity>
+              <Questionaire
+                title={problemTitle}
+                listData={listDataNextQuestion}
+                selectItem={selectFollowUpItem}
+                fadeOut={true}
+              />
+              <TouchableOpacity
+                onPress={handleBackClick}
+                style={styles.vorigeBtnContainer}
+              >
+                <Text style={styles.vorigeBtnText}>Terug</Text>
+              </TouchableOpacity>
+            </Animation>
           </View>
         ) : null}
       </React.Fragment>

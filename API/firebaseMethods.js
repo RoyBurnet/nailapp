@@ -32,3 +32,11 @@ export async function loggingOut() {
     Alert.alert("There is something wrong!", error.message);
   }
 }
+
+
+// Web client ID
+
+// 804661520551 - mem5q91cnnjdog3poqpffv22i22jdbvo.apps.googleusercontent.com;
+
+// Web client secret
+// fPqRSNzrDupgr477nNzAEOqE

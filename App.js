@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import DrawerNavigator from "./navigation/DrawerNavigator";
 
 import AuthState from "./context/auth/AuthState";
+import AnimateState from "./context/animate/AnimateState"
 
 import * as firebase from "firebase";
 import apiKeys from "./config/keys";
@@ -28,9 +29,11 @@ const App = () => {
     <>
       <StatusBar hidden />
       <AuthState>
-        <NavigationContainer>
-          <DrawerNavigator />
-        </NavigationContainer>
+        <AnimateState>
+          <NavigationContainer>
+            <DrawerNavigator />
+          </NavigationContainer>
+        </AnimateState>
       </AuthState>
     </>
   );
