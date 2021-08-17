@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>804661520551-cv95d6pdmqrkjeemp8cin2n2vm39dv58.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.804661520551-cv95d6pdmqrkjeemp8cin2n2vm39dv58</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>804661520551-rkcc3o7lor12j0ck87evafodsctdtv72.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBNgqbalOM5wtz7mqRhZeQ2RPASluYl3wk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>804661520551</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>host.exp.exponent</string>
+	<key>PROJECT_ID</key>
+	<string>nailapp-3c30f</string>
+	<key>STORAGE_BUCKET</key>
+	<string>nailapp-3c30f.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:804661520551:ios:6ccfd080d242fa40a75382</string>
+	<key>DATABASE_URL</key>
+	<string>https://nailapp-3c30f-default-rtdb.europe-west1.firebasedatabase.app</string>
+</dict>
+</plist>

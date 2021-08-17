@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import AuthContext from "../context/auth/AuthContext";
+import GmailLogin from "../components/GmailLogin";
 
 import {
   View,
@@ -30,19 +31,26 @@ export default function Login({ navigation }) {
   };
 
   const handleSignIn = () => {
+ 
     if (!email) {
       Alert.alert("Email field is required.");
       return;
     }
+
     if (!password) {
       Alert.alert("Password field is required.");
       return;
     }
 
     loginUser(email.toLowerCase(), password);
+
     emptyState();
     navigation.navigate("Loading");
   };
+
+  const socialSignIn = () => {
+     navigation.navigate("Loading");
+  }
 
   return (
     <>
@@ -110,13 +118,7 @@ export default function Login({ navigation }) {
             </Text>
             <View style={styles.socialButtonsContainer}>
               <View style={styles.socialButton}>
-                <TouchableOpacity
-                  onPress={() =>
-                    navigation.navigate("Home", { screen: "HomeScreen" })
-                  }
-                >
-                  <Image source={require("../src/images/googleLogo.png")} />
-                </TouchableOpacity>
+                <GmailLogin socialSignIn={socialSignIn} />
               </View>
               <View style={styles.socialButton}>
                 <TouchableOpacity
@@ -145,7 +147,9 @@ export default function Login({ navigation }) {
                 </TouchableOpacity>
               </View>
               <TouchableOpacity>
-                <Text style={styles.withoutRegisterText}>Doorgaan zonder registreren</Text>
+                <Text style={styles.withoutRegisterText}>
+                  Doorgaan zonder registreren
+                </Text>
               </TouchableOpacity>
             </View>
             <TouchableOpacity
@@ -302,15 +306,15 @@ const styles = StyleSheet.create({
   },
   register: {
     flexDirection: "row",
-    justifyContent: 'center'
+    justifyContent: "center",
   },
   registerText: {
-    color: "white"
+    color: "white",
   },
   withoutRegisterText: {
     color: "white",
-    textAlign: 'center',
-    marginTop: 10
+    textAlign: "center",
+    marginTop: 10,
   },
   noRegisterText: {
     color: "#fff",

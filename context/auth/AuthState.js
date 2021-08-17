@@ -44,6 +44,18 @@ const AuthState = (props) => {
     }
   };
 
+  const setUserToken = async (userToken) => {
+    try {
+      await SecureStore.setItemAsync("userToken", userToken);
+      dispatch({
+        type: SIGN_IN,
+        payload: userToken,
+      });
+    } catch (error) {
+      throw error;
+    }
+  };
+
   const restoreUser = async () => {
     try {
       const userToken = await SecureStore.getItemAsync("userToken");
@@ -81,6 +93,7 @@ const AuthState = (props) => {
         loginUser,
         restoreUser,
         signOut,
+        setUserToken,
       }}
     >
       {props.children}

@@ -15,9 +15,20 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "bundleIdentifier": "host.exp.exponent",
+      "buildNumber": "1.0.0",
+      "supportsTablet": true,
+      "config": {
+        "googleSignIn": {
+          "reservedClientId": "com.googleusercontent.apps.804661520551-cv95d6pdmqrkjeemp8cin2n2vm39dv58"
+        }
+      },
+      "googleServicesFile": "./assets/firebase/GoogleService-Info.plist"
     },
     "android": {
+      "package": "com.yourcompany.yourappname",
+      "versionCode": 1,
+      "googleServicesFile": "./assets/firebase/google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#BBC8AD"

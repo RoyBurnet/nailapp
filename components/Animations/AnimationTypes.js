@@ -3,7 +3,6 @@ import { Animated } from "react-native";
 import AnimateContext from "../../context/animate/AnimateContext";
 
 export const FadeOut = (props) => {
-  console.log(props.trigger)
   const animateContext = useContext(AnimateContext);
   const { hasFinishedFadeOut, setFadeOutStatus } = animateContext;
 
@@ -45,7 +44,6 @@ export function FadeIn(props) {
 
   useEffect(() => {
     if (props.trigger) {
-      console.log(props.trigger);
       startAnimation();
     }
   }, [props.trigger]);
