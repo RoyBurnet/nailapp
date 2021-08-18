@@ -20,7 +20,7 @@ import {
 
 export default function Login({ navigation }) {
   const authContext = useContext(AuthContext);
-  const { loginUser, showLoginText } = authContext;
+  const { loginUser, showLoginText, setUserToken } = authContext;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -31,7 +31,6 @@ export default function Login({ navigation }) {
   };
 
   const handleSignIn = () => {
- 
     if (!email) {
       Alert.alert("Email field is required.");
       return;
@@ -48,9 +47,10 @@ export default function Login({ navigation }) {
     navigation.navigate("Loading");
   };
 
-  const socialSignIn = () => {
-     navigation.navigate("Loading");
-  }
+  const socialSignIn = (userToken) => {
+    setUserToken(userToken);
+    navigation.navigate("Loading");
+  };
 
   return (
     <>

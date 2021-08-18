@@ -7,8 +7,6 @@ import React from "react";
 import { View, TouchableOpacity, StyleSheet, Image } from "react-native";
 import * as WebBrowser from "expo-web-browser";
 import * as Google from "expo-auth-session/providers/google";
-import * as AuthSession from "expo-auth-session";
-import AuthContext from "../context/auth/AuthContext";
 import * as firebase from "firebase";
 import "firebase/firestore";
 
@@ -17,9 +15,6 @@ WebBrowser.maybeCompleteAuthSession({
 });
 
 function GmailLogin({ socialSignIn }) {
-  const authContext = React.useContext(AuthContext);
-  const { setUserToken } = authContext;
-
   const [request, response, promptAsync] = Google.useAuthRequest({
     clientId:
       "804661520551-mem5q91cnnjdog3poqpffv22i22jdbvo.apps.googleusercontent.com",
@@ -34,9 +29,8 @@ function GmailLogin({ socialSignIn }) {
 
       (async () => {
         let profile = await firebase.auth().signInWithCredential(credential);
-        let uid = await profile?.user?.uid;
-        setUserToken(uid);
-        socialSignIn();
+        let userToken = await profile?.user?.uid;
+        socialSignIn(userToken);
       })();
     }
   }, [response]);
