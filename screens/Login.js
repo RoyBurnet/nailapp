@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import AuthContext from "../context/auth/AuthContext";
 import GmailLogin from "../components/GmailLogin";
+import FBLogin from "../components/FBLogin";
+import TwitterLogin from "../components/TwitterLogin";
 
 import {
   View,
@@ -121,13 +123,10 @@ export default function Login({ navigation }) {
                 <GmailLogin socialSignIn={socialSignIn} />
               </View>
               <View style={styles.socialButton}>
-                <TouchableOpacity
-                  onPress={() =>
-                    navigation.navigate("Home", { screen: "HomeScreen" })
-                  }
-                >
-                  <Image source={require("../src/images/facebookLogo.png")} />
-                </TouchableOpacity>
+                <FBLogin socialSignIn={socialSignIn} />
+              </View>
+              <View style={styles.socialButton}>
+                <TwitterLogin socialSignIn={socialSignIn} />
               </View>
               <View style={styles.socialButton}>
                 <TouchableOpacity
