@@ -16,8 +16,8 @@ import { LogBox } from "react-native";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 
-LogBox.ignoreAllLogs();
-LogBox.ignoreLogs(["Native splash screen is already hidden."]);
+// LogBox.ignoreAllLogs();
+// LogBox.ignoreLogs(["Native splash screen is already hidden."]);
 const App = () => {
 
   if (!firebase.apps.length) {

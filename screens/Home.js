@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginBottom: 20,
     fontFamily: "Gilroy-Bold",
-    fontSize: hp("3%"),
+    fontSize: hp("5%"),
     color: "#fff",
     position: "absolute",
     bottom: 10,

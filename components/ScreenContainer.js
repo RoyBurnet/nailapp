@@ -39,10 +39,10 @@ const styles = StyleSheet.create({
   },
   screenTitle: {
     alignSelf: "flex-end",
-    marginBottom: hp("5%"),
-    marginLeft: wp("6%"),
+    marginBottom: hp("4%"),
+    marginLeft: wp("8%"),
     fontFamily: "Gilroy-Bold",
-    fontSize: hp("3%"),
+    fontSize: hp("5%"),
     color: "white",
   },
   screenImage: {
