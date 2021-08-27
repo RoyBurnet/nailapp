@@ -254,6 +254,7 @@ export default function NagellakPicker() {
           <ScreenTitle />
           <ShowMenuContainer />
           <NailColorContainer
+            isHidden={hideOptions}
             skinColor={skinColor}
             data={selectedNail}
             color={nailColor}

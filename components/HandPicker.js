@@ -138,7 +138,21 @@ const BuyNowButton = (props) => {
   );
 };
 
-const NailColorContainer = (props) => {
+const CtaContainer = ({ isHidden, nailColor }) => {
+  if (isHidden) {
+    return <></>;
+  } else {
+    return (
+      <>
+        <ProdcutTitleContainer number={nailColor} />
+        <NailPolishContainer number={nailColor} />
+        <BuyNowButton number={nailColor} />
+      </>
+    );
+  }
+};
+
+function NailColorContainer(props) {
   useFonts({
     "Gilroy-Bold": require("../assets/fonts/Gilroy-Bold.ttf"),
   });
@@ -156,13 +170,11 @@ const NailColorContainer = (props) => {
         <HandImage image={skinColor} />
         <NailColor shape={nailShape} color={nailColor} />
         <ShadowImage image={shadow} />
-        <ProdcutTitleContainer number={nailColor} />
-        <NailPolishContainer number={nailColor} />
-        <BuyNowButton number={nailColor} />
+        <CtaContainer isHidden={props.isHidden} nailColor={nailColor} />
       </View>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
