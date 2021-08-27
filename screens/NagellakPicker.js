@@ -18,6 +18,8 @@ import FastImage from "react-native-fast-image";
 import images from "../src/images.js";
 import { getNailType } from "../src/nailShapes.js";
 import NailColorContainer from "../components/HandPicker";
+import { useFonts } from "expo-font";
+import { ToggleIcon } from "../components/SvgImages/Icons";
 
 const IconSkinType = require("../src/images/Skintype-icon.png");
 const IconNailLength = require("../src/images/nail-length-icon.png");
@@ -25,6 +27,10 @@ const IconNailShape = require("../src/images/nail-shape-icon.png");
 const IconNailColor = require("../src/images/nail-color-icon.png");
 
 export default function NagellakPicker() {
+  useFonts({
+    "Gilroy-Bold": require("../assets/fonts/Gilroy-Bold.ttf"),
+  });
+  const [hideOptions, setHideOptions] = useState(false);
   const [currentMenu, setCurrentMenu] = useState();
   const [skinColor, setCurrentSkinColor] = useState();
   const [nailLength, setCurrentNailLength] = useState("Kort");
@@ -65,6 +71,8 @@ export default function NagellakPicker() {
       selectedOption: [],
     },
   ]);
+
+  const toggleOptions = () => setHideOptions((previousState) => !previousState);
 
   const setShowMenuToFalse = () => {
     currentMenu === undefined ? null : (currentMenu[0].showMenu = false);
@@ -212,24 +220,39 @@ export default function NagellakPicker() {
 
   const ScreenTitle = () => {
     return (
+      <View style={styles.titleContainer}>
+        <View style={styles.textArea}>
+          <Text style={styles.title}>Colourpicker</Text>
+          <Text style={styles.subtitle}>Maak hieronder uw keuze</Text>
+        </View>
+        <View style={styles.toggleIcon}>
+          <TouchableOpacity onPress={() => toggleOptions()}>
+            <ToggleIcon />
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
+  };
+
+  const ShowMenuContainer = () => {
+    return (
       <>
-        <Text style={styles.titleText}>
-          Welkom bij de nagellak colorpicker.{"\n"} Maak hieronder uw keuze
-        </Text>
+        {hideOptions === false ? (
+          <>
+            <MenuButtonContainer />
+            <SubMenu />
+          </>
+        ) : null}
       </>
     );
   };
 
   return (
     <>
-      <ImageBackground
-        source={require("../src/images/nail-background.jpg")}
-        style={styles.backgroundImage}
-      >
+      <ImageBackground style={styles.backgroundImage}>
         <View style={styles.container}>
           <ScreenTitle />
-          <MenuButtonContainer />
-          <SubMenu />
+          <ShowMenuContainer />
           <NailColorContainer
             skinColor={skinColor}
             data={selectedNail}
@@ -244,6 +267,7 @@ export default function NagellakPicker() {
 const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
+    backgroundColor: "#002B64",
   },
   container: {
     flex: 1,
@@ -251,17 +275,39 @@ const styles = StyleSheet.create({
     marginTop: hp("16%"),
     alignItems: "center",
   },
+  titleContainer: {
+    flexDirection: "row",
+    width: wp("85%"),
+    justifyContent: "space-between",
+  },
+  title: {
+    fontFamily: "Gilroy-Bold",
+    fontSize: hp("3%"),
+    color: "#ACC9E8",
+  },
+  subtitle: {
+    marginTop: hp("1%"),
+    fontFamily: "Gilroy-Bold",
+    fontSize: hp("2%"),
+    color: "#ACC9E8",
+  },
+  textArea: {
+    flexDirection: "column",
+  },
   titleText: {
     top: hp("5%"),
     color: "#fff",
     fontSize: 20,
     textAlign: "center",
   },
+  toggleIcon: {
+    justifyContent: "flex-end",
+  },
   menuContainer: {
     flexDirection: "row",
     justifyContent: "space-around",
     width: wp("90%"),
-    marginTop: hp("10%"),
+    marginTop: hp("2%"),
     height: 80,
   },
   subMenu: {
@@ -270,8 +316,8 @@ const styles = StyleSheet.create({
     maxHeight: 400,
     width: wp("85%"),
     paddingBottom: 10,
-    backgroundColor: "rgba(255, 255, 255, 0.9)",
-    borderRadius: 2,
+    backgroundColor: "#fff",
+    borderRadius: 10,
     alignItems: "center",
     zIndex: 2,
 
@@ -283,8 +329,8 @@ const styles = StyleSheet.create({
   },
   subMenuTitleContainer: {
     marginTop: 10,
-    borderRadius: 2,
-    backgroundColor: "#3F608D",
+    borderRadius: 10,
+    backgroundColor: "#ACC9E8",
     height: 45,
     width: wp("80%"),
     flexDirection: "row",
@@ -294,6 +340,7 @@ const styles = StyleSheet.create({
   subMenuTitle: {
     fontSize: 17,
     color: "#fff",
+    fontFamily: "Gilroy-Bold",
   },
   btnContainer: {
     flexDirection: "column",
@@ -312,7 +359,7 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     borderLeftColor: "transparent",
     borderRightColor: "transparent",
-    borderBottomColor: "rgba(255, 255, 255, 0.9)",
+    borderBottomColor: "#fff",
   },
   subMenuItems: {
     fontSize: 16,
@@ -321,13 +368,14 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     alignSelf: "flex-start",
     marginLeft: 20,
-    color: "#0D2B6C",
+    fontFamily: "Gilroy-Bold",
+    color: "#ACC9E8",
   },
   itemContainer: {
     alignSelf: "flex-start",
   },
   line: {
-    borderBottomColor: "#0D2B6C",
+    borderBottomColor: "#ACC9E8",
     borderBottomWidth: 0.5,
     width: wp("75%"),
     marginLeft: 20,

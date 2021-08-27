@@ -135,7 +135,7 @@ const HomeStackScreens = () => {
           <HomeStack.Screen
             name="NagellakPicker"
             component={NagellakPicker}
-            options={customHeader}
+            options={adviesSchermHeader}
           />
           <HomeStack.Screen
             name="ResetPassword"

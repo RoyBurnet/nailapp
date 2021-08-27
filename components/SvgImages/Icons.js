@@ -1,5 +1,5 @@
 import React from "react";
-import Svg, { Path, Image, Defs, Pattern, ClipPath, G } from "react-native-svg";
+import Svg, { Path, Image, Defs, Pattern, ClipPath, G, Mask } from "react-native-svg";
 
 function Qlogo(props) {
   return (
@@ -87,4 +87,47 @@ function Mainlogo(props) {
   );
 }
 
-export { Qlogo, Backbtn, Menubtn, Mainlogo };
+
+function ToggleIcon(props) {
+  return (
+    <Svg
+      width={30}
+      height={30}
+      viewBox="0 0 30 30"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <Path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M12.6 23.241H4.724a.938.938 0 010-1.875H12.6a.938.938 0 010 1.875zM23.989 11.126h-7.875a.938.938 0 010-1.876h7.875a.938.938 0 010 1.876z"
+        fill="#ACC9E8"
+      />
+      <Mask id="a" maskUnits="userSpaceOnUse" x={3} y={6} width={9} height={8}>
+        <Path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M3.75 6.25h7.782v7.74H3.75V6.25z"
+          fill="#fff"
+        />
+      </Mask>
+      <G mask="url(#a)">
+        <Path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M7.641 8.125a2.009 2.009 0 00-2.016 1.996c0 1.1.905 1.994 2.016 1.994a2.006 2.006 0 002.016-1.994 2.008 2.008 0 00-2.016-1.996zm0 5.865c-2.145 0-3.891-1.735-3.891-3.869 0-2.134 1.746-3.871 3.891-3.871 2.146 0 3.891 1.737 3.891 3.871S9.787 13.99 7.641 13.99z"
+          fill="#ACC9E8"
+        />
+      </G>
+      <Path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M21.735 20.26c-1.113 0-2.018.895-2.018 1.995 0 1.101.905 1.995 2.018 1.995a2.006 2.006 0 002.015-1.995c0-1.1-.904-1.995-2.015-1.995zm0 5.865c-2.147 0-3.893-1.736-3.893-3.87 0-2.134 1.746-3.87 3.893-3.87 2.145 0 3.89 1.736 3.89 3.87 0 2.134-1.745 3.87-3.89 3.87z"
+        fill="#ACC9E8"
+      />
+    </Svg>
+  );
+}
+
+export { Qlogo, Backbtn, Menubtn, Mainlogo, ToggleIcon };

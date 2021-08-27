@@ -35,6 +35,7 @@ import {
 import { getNailType } from "../src/nailShapes.js";
 import nailPolishImages from "../src/polish.js";
 import * as WebBrowser from "expo-web-browser";
+import { useFonts } from "expo-font";
 
 const componentMapping = {
   "Kort Almond": AlmondSmall,
@@ -129,7 +130,7 @@ const BuyNowButton = (props) => {
             style={styles.buyButton}
             onPress={() => handleOpenBrowser(url)}
           >
-            <Text style={styles.productTitleText}>Nu kopen</Text>
+            <Text style={styles.productTitleTextButton}>Nu kopen</Text>
           </TouchableOpacity>
         </View>
       )}
@@ -138,6 +139,10 @@ const BuyNowButton = (props) => {
 };
 
 const NailColorContainer = (props) => {
+  useFonts({
+    "Gilroy-Bold": require("../assets/fonts/Gilroy-Bold.ttf"),
+  });
+
   const size = props?.data[0]?.size;
   const type = props?.data[0]?.type;
   const nailColor = props.color;
@@ -233,12 +238,17 @@ const styles = StyleSheet.create({
   productTitle: {
     position: "absolute",
     left: wp("13%"),
-    top: hp("-5%"),
+    top: hp("-15%"),
   },
   productTitleText: {
     fontSize: hp("3%"),
-    fontWeight: "800",
+    fontFamily: "Gilroy-Bold",
+    color: "#ACC9E8",
+  },
+  productTitleTextButton: {
     color: "white",
+    fontFamily: "Gilroy-Bold",
+    fontSize: hp("3%"),
   },
   ctaContainer: {
     width: wp("69%"),
@@ -256,7 +266,7 @@ const styles = StyleSheet.create({
     zIndex: 99,
   },
   buyButton: {
-    backgroundColor: "#7FD6F1",
+    backgroundColor: "#ACC9E8",
     paddingLeft: wp("8%"),
     paddingRight: wp("8%"),
     paddingTop: wp("2%"),
