@@ -144,7 +144,9 @@ export default function Login({ navigation }) {
               <View style={styles.register}>
                 <Text style={styles.registerText}>Nog geen account? </Text>
                 <TouchableOpacity>
-                  <Text style={styles.registerText}>Meld je hier aan.</Text>
+                  <Text style={[styles.registerText, styles.ctaMeld]}>
+                    Meld je hier aan.
+                  </Text>
                 </TouchableOpacity>
               </View>
               <TouchableOpacity>
@@ -197,7 +199,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: hp('10%')
+    marginTop: hp("10%"),
   },
   headerText: {
     color: "white",
@@ -223,6 +225,9 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: wp("5.5%"),
   },
+  ctaMeld: {
+    fontFamily: "Gilroy-Bold",
+  },
   emailTextFieldContainer: {
     flexDirection: "row",
     borderBottomWidth: 0,
@@ -247,7 +252,7 @@ const styles = StyleSheet.create({
     paddingTop: hp("1%"),
   },
   textField: {
-    width: wp('70%'),
+    width: wp("70%"),
     flex: 1,
     paddingRight: 10,
     paddingBottom: 10,
@@ -261,7 +266,7 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
     marginRight: 10,
     marginTop: -10,
-    padding: 0, 
+    padding: 0,
   },
   buttonContainer: {
     justifyContent: "center",
