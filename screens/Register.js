@@ -15,8 +15,14 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
+import { useFonts } from "expo-font";
+import { Message, Lock, Person } from "../components/SvgImages/Icons";
 
 export default function Register({ navigation }) {
+  useFonts({
+    "Gilroy-Bold": require("../assets/fonts/Gilroy-Bold.ttf"),
+    "Gilroy-Regular": require("../assets/fonts/Gilroy-Regular.ttf"),
+  });
   const authContext = useContext(AuthContext);
   const { register } = authContext;
 
@@ -57,36 +63,30 @@ export default function Register({ navigation }) {
   return (
     <>
       <ImageBackground
-        source={require("../src/images/nail-background.jpg")}
+        source={require("../src/images/login-background.png")}
         style={styles.backgroundImage}
       >
         <View style={styles.container}>
           <View style={styles.inputFields}>
             <View style={styles.nameTextFieldContainer}>
-              <Image
-                style={styles.inputLogo}
-                source={require("../src/icons/person-icon.png")}
-              />
+              <Person style={styles.inputLogo} />
               <View>
                 <TextInput
                   style={styles.textField}
                   placeholder="name"
-                  placeholderTextColor="white"
+                  placeholderTextColor="#ACC9E8"
                   onChangeText={(name) => setName(name)}
                   value={name}
                 />
               </View>
             </View>
             <View style={styles.emailTextFieldContainer}>
-              <Image
-                style={styles.inputLogo}
-                source={require("../src/images/mail.png")}
-              />
+              <Message style={styles.inputLogo} />
               <View>
                 <TextInput
                   style={styles.textField}
-                  placeholder="E-mail"
-                  placeholderTextColor="white"
+                  placeholder="E-mailadres"
+                  placeholderTextColor="#ACC9E8"
                   onChangeText={(email) => setEmail(email)}
                   value={email}
                 />
@@ -94,15 +94,12 @@ export default function Register({ navigation }) {
             </View>
 
             <View style={styles.passwordTextFieldContainer}>
-              <Image
-                style={styles.inputLogo}
-                source={require("../src/images/lock.png")}
-              />
+              <Lock style={styles.inputLogo} />
               <View>
                 <TextInput
                   style={styles.textField}
                   placeholder="Wachtwoord"
-                  placeholderTextColor="white"
+                  placeholderTextColor="#ACC9E8"
                   secureTextEntry={true}
                   onChangeText={(password) => setPassword(password)}
                   value={password}
@@ -159,22 +156,39 @@ const styles = StyleSheet.create({
   },
   emailTextFieldContainer: {
     flexDirection: "row",
-    borderBottomWidth: 1,
-    borderColor: "#FFF",
+    borderBottomWidth: 0,
+    backgroundColor: "rgba(255,255,255,0.8)",
+    borderRadius: 10,
+    height: 50,
+    justifyContent: "flex-start",
+    alignItems: "center",
+    paddingLeft: wp("2%"),
+    paddingTop: hp("1%"),
   },
   nameTextFieldContainer: {
+    marginTop: 10,
     flexDirection: "row",
-    borderBottomWidth: 1,
-    borderColor: "#FFF",
-    marginTop: 15,
+    borderBottomWidth: 0,
+    backgroundColor: "rgba(255,255,255,0.8)",
+    borderRadius: 10,
+    height: 50,
+    justifyContent: "flex-start",
+    alignItems: "center",
+    paddingLeft: wp("2%"),
+    paddingTop: hp("1%"),
+    marginBottom: 10,
   },
   passwordTextFieldContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    borderBottomWidth: 1,
-    borderColor: "#FFF",
     marginTop: 10,
-    height: 60,
+    flexDirection: "row",
+    borderBottomWidth: 0,
+    backgroundColor: "rgba(255,255,255,0.8)",
+    borderRadius: 10,
+    height: 50,
+    justifyContent: "flex-start",
+    alignItems: "center",
+    paddingLeft: wp("2%"),
+    paddingTop: hp("1%"),
   },
   textField: {
     flex: 1,
@@ -188,11 +202,7 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
     marginRight: 10,
     padding: 0,
-    ...Platform.select({
-      ios: {
-        marginTop: -10,
-      },
-    }),
+    marginTop: -10,
   },
   buttonContainer: {
     justifyContent: "center",

@@ -143,7 +143,11 @@ export default function Login({ navigation }) {
             <View style={styles.noAccountContainer}>
               <View style={styles.register}>
                 <Text style={styles.registerText}>Nog geen account? </Text>
-                <TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate("Register", {screen: "Register"})
+                  }}
+                >
                   <Text style={[styles.registerText, styles.ctaMeld]}>
                     Meld je hier aan.
                   </Text>
