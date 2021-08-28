@@ -20,7 +20,14 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
+import { useFonts } from "expo-font";
+import { Message, Lock } from "../components/SvgImages/Icons";
+
 export default function Login({ navigation }) {
+  useFonts({
+    "Gilroy-Bold": require("../assets/fonts/Gilroy-Bold.ttf"),
+    "Gilroy-Regular": require("../assets/fonts/Gilroy-Regular.ttf"),
+  });
   const authContext = useContext(AuthContext);
   const { loginUser, showLoginText, setUserToken } = authContext;
   const [email, setEmail] = useState("");
@@ -70,12 +77,13 @@ export default function Login({ navigation }) {
               Jouw hand & nageladvies in één app
             </Text>
           </View>
+          <Text style={styles.ctaText}>
+            {" "}
+            Welkom,{"\n"} Meld je aan om verder te gaan{" "}
+          </Text>
           <View style={styles.inputFields}>
             <View style={styles.emailTextFieldContainer}>
-              <Image
-                style={styles.inputLogo}
-                source={require("../src/images/Message.png")}
-              />
+              <Message style={styles.inputLogo} />
               <View>
                 <TextInput
                   style={styles.textField}
@@ -87,10 +95,7 @@ export default function Login({ navigation }) {
             </View>
 
             <View style={[styles.passwordTextFieldContainer]}>
-              <Image
-                style={styles.inputLogo}
-                source={require("../src/images/lock.png")}
-              />
+              <Lock style={styles.inputLogo} />
               <View>
                 <TextInput
                   style={styles.textField}
@@ -124,9 +129,6 @@ export default function Login({ navigation }) {
               </View>
               <View style={styles.socialButton}>
                 <FBLogin socialSignIn={socialSignIn} />
-              </View>
-              <View style={styles.socialButton}>
-                <TwitterLogin socialSignIn={socialSignIn} />
               </View>
               <View style={styles.socialButton}>
                 <TouchableOpacity
@@ -195,17 +197,20 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
+    marginTop: hp('10%')
   },
   headerText: {
     color: "white",
-    fontSize: wp("3.9%"),
+    fontSize: wp("5%"),
     marginTop: hp("1%"),
-    width: wp("80%"),
+    width: wp("90%"),
     textAlign: "center",
+    fontFamily: "Gilroy-Bold",
+    top: hp("-8%"),
   },
   logo: {
     resizeMode: "contain",
-    // width: wp("80%"),
+    top: hp("-8%"),
     height: hp("17%"),
   },
   inputFields: {
@@ -213,12 +218,17 @@ const styles = StyleSheet.create({
     width: wp("82%"),
     flexDirection: "column",
   },
+  ctaText: {
+    fontFamily: "Gilroy-Bold",
+    color: "#fff",
+    fontSize: wp("5.5%"),
+  },
   emailTextFieldContainer: {
     flexDirection: "row",
     borderBottomWidth: 0,
     backgroundColor: "rgba(255,255,255,0.8)",
     borderRadius: 10,
-    height: 40,
+    height: 50,
     justifyContent: "flex-start",
     alignItems: "center",
     paddingLeft: wp("2%"),
@@ -230,7 +240,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0,
     backgroundColor: "rgba(255,255,255,0.8)",
     borderRadius: 10,
-    height: 40,
+    height: 50,
     justifyContent: "flex-start",
     alignItems: "center",
     paddingLeft: wp("2%"),
@@ -242,6 +252,8 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     paddingLeft: 0,
     color: "#ACC9E8",
+    fontFamily: "Gilroy-Regular",
+    fontSize: wp("4%"),
   },
   inputLogo: {
     width: 20,
@@ -261,14 +273,16 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 10,
     width: wp("82%"),
-    height: 40,
+    height: 50,
   },
   lostPassword: {
-    marginTop: 10,
+    marginTop: 15,
     marginBottom: 10,
   },
   lostPasswordText: {
     color: "#fff",
+    fontFamily: "Gilroy-Regular",
+    fontSize: wp("4%"),
   },
   socialContainer: {
     height: 150,
@@ -282,8 +296,9 @@ const styles = StyleSheet.create({
   socialText: {
     textAlign: "center",
     marginTop: 20,
-    fontSize: 16,
+    fontSize: wp("5%"),
     color: "white",
+    fontFamily: "Gilroy-Bold",
   },
   socialButtonsContainer: {
     justifyContent: "center",
@@ -309,11 +324,15 @@ const styles = StyleSheet.create({
   },
   registerText: {
     color: "white",
+    fontFamily: "Gilroy-Regular",
+    fontSize: wp("4.5%"),
   },
   withoutRegisterText: {
     color: "white",
     textAlign: "center",
     marginTop: 10,
+    fontFamily: "Gilroy-Regular",
+    fontSize: wp("4.5%"),
   },
   noRegisterText: {
     color: "#fff",

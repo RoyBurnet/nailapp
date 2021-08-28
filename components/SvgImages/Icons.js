@@ -130,4 +130,59 @@ function ToggleIcon(props) {
   );
 }
 
-export { Qlogo, Backbtn, Menubtn, Mainlogo, ToggleIcon };
+function Message(props) {
+  return (
+    <Svg
+      width={16}
+      height={16}
+      viewBox="0 0 16 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <G
+        stroke="#ACC9E8"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <Path d="M11.935 5.9L8.973 8.31a1.531 1.531 0 01-1.907 0L4.08 5.9" />
+        <Path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M11.273 14c2.027.006 3.394-1.66 3.394-3.708V5.713C14.667 3.666 13.3 2 11.273 2H4.727C2.7 2 1.333 3.666 1.333 5.713v4.58c0 2.047 1.367 3.713 3.394 3.707h6.546z"
+        />
+      </G>
+    </Svg>
+  );
+}
+
+function Lock(props) {
+  return (
+    <Svg
+      width={20}
+      height={20}
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <G
+        stroke="#ACC9E8"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <Path d="M13.686 7.873V6.084a3.793 3.793 0 00-3.792-3.792 3.792 3.792 0 00-3.809 3.775v1.807" />
+        <Path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M13.07 17.708H6.701a3.16 3.16 0 01-3.16-3.16v-3.574a3.16 3.16 0 013.16-3.16h6.367a3.16 3.16 0 013.16 3.16v3.574a3.16 3.16 0 01-3.16 3.16z"
+        />
+        <Path d="M9.886 11.836v1.85" />
+      </G>
+    </Svg>
+  );
+}
+
+export { Qlogo, Backbtn, Menubtn, Mainlogo, ToggleIcon, Message, Lock };
