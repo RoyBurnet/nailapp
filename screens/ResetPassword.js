@@ -15,7 +15,14 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
+import { useFonts } from "expo-font";
+import { Message } from "../components/SvgImages/Icons";
+
 export default function ResetPassword({ navigation }) {
+  useFonts({
+    "Gilroy-Bold": require("../assets/fonts/Gilroy-Bold.ttf"),
+    "Gilroy-Regular": require("../assets/fonts/Gilroy-Regular.ttf"),
+  });
   const authContext = useContext(AuthContext);
   const { register } = authContext;
 
@@ -29,28 +36,24 @@ export default function ResetPassword({ navigation }) {
   };
 
   const handleRegistration = () => {
- 
     navigation.navigate("Login");
   };
 
   return (
     <>
       <ImageBackground
-        source={require("../src/images/nail-background.jpg")}
+        source={require("../src/images/login-background.png")}
         style={styles.backgroundImage}
       >
         <View style={styles.container}>
           <View style={styles.inputFields}>
             <View style={styles.emailTextFieldContainer}>
-              <Image
-                style={styles.inputLogo}
-                source={require("../src/images/mail.png")}
-              />
+              <Message style={styles.inputLogo} />
               <View>
                 <TextInput
                   style={styles.textField}
-                  placeholder="E-mail"
-                  placeholderTextColor="white"
+                  placeholder="E-mailadres"
+                  placeholderTextColor="#ACC9E8"
                   onChangeText={(email) => setEmail(email)}
                   value={email}
                 />
@@ -106,8 +109,14 @@ const styles = StyleSheet.create({
   },
   emailTextFieldContainer: {
     flexDirection: "row",
-    borderBottomWidth: 1,
-    borderColor: "#FFF",
+    borderBottomWidth: 0,
+    backgroundColor: "rgba(255,255,255,0.8)",
+    borderRadius: 10,
+    height: 50,
+    justifyContent: "flex-start",
+    alignItems: "center",
+    paddingLeft: wp("2%"),
+    paddingTop: hp("1%"),
   },
   textField: {
     flex: 1,
@@ -120,12 +129,8 @@ const styles = StyleSheet.create({
     width: 20,
     resizeMode: "contain",
     marginRight: 10,
+    marginTop: -10,
     padding: 0,
-    ...Platform.select({
-      ios: {
-        marginTop: -10,
-      },
-    }),
   },
   buttonContainer: {
     justifyContent: "center",
