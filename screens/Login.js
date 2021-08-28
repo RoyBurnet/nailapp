@@ -247,6 +247,7 @@ const styles = StyleSheet.create({
     paddingTop: hp("1%"),
   },
   textField: {
+    width: wp('70%'),
     flex: 1,
     paddingRight: 10,
     paddingBottom: 10,
@@ -259,12 +260,8 @@ const styles = StyleSheet.create({
     width: 20,
     resizeMode: "contain",
     marginRight: 10,
-    padding: 0,
-    ...Platform.select({
-      ios: {
-        marginTop: -10,
-      },
-    }),
+    marginTop: -10,
+    padding: 0, 
   },
   buttonContainer: {
     justifyContent: "center",
