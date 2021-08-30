@@ -6,7 +6,6 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
-  ScrollView,
   Platform,
 } from "react-native";
 import {
@@ -20,6 +19,7 @@ import { getNailType } from "../src/nailShapes.js";
 import NailColorContainer from "../components/HandPicker";
 import { useFonts } from "expo-font";
 import { ToggleIcon } from "../components/SvgImages/Icons";
+import ColorPalette from '../components/ColorPalette'
 
 const IconSkinType = require("../src/images/Skintype-icon.png");
 const IconNailLength = require("../src/images/nail-length-icon.png");
@@ -88,8 +88,8 @@ export default function NagellakPicker() {
     setCurrentMenu(selectedMenu);
   };
 
-  const handleColorPress = (index) => {
-    setCurrentNailColor(index - 1);
+  const handleColorPress = (item) => {
+    setCurrentNailColor(item);
     setShowMenuToFalse();
     setCurrentMenu(undefined);
   };
@@ -176,25 +176,6 @@ export default function NagellakPicker() {
     );
   };
 
-  const ColorPalletItems = () => {
-    return (
-      <ScrollView style={styles.colorPalletContainer}>
-        <View style={styles.colorPalletView}>
-          {currentMenu[0].options.map((item, index) => {
-            return (
-              <TouchableOpacity
-                key={index}
-                onPress={() => handleColorPress(index + 1)}
-              >
-                <Image style={styles.palletStyle} source={item} />
-              </TouchableOpacity>
-            );
-          })}
-        </View>
-      </ScrollView>
-    );
-  };
-
   const SubMenu = () => {
     return (
       <>
@@ -207,7 +188,7 @@ export default function NagellakPicker() {
             </View>
             {currentMenu[0].id === 3 ? (
               <View style={styles.palletInsideView}>
-                <ColorPalletItems key={currentMenu[0].id} />
+                <ColorPalette handleColorPress={handleColorPress} />
               </View>
             ) : (
               <TextItems />
@@ -387,23 +368,8 @@ const styles = StyleSheet.create({
   submenuItemContainer: {
     alignSelf: "flex-start",
   },
-  colorPalletContainer: {
-    alignSelf: "center",
-    maxHeight: hp("30%"),
-  },
-  colorPalletView: {
-    justifyContent: "center",
-    flexWrap: "wrap",
-    flexDirection: "row",
-  },
   palletInsideView: {
     maxWidth: wp("90%"),
-  },
-  palletStyle: {
-    width: wp("20%"),
-    height: hp("10%"),
-    resizeMode: "contain",
-    flexDirection: "row",
   },
   icons: {
     width: wp("15%"),

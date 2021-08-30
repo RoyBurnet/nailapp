@@ -53,7 +53,7 @@ const images = [
   require('../src/color-steels/TAKEAWAYNAILCOLOUR_52.png'),
   require('../src/color-steels/TAKEAWAYNAILCOLOUR_53.png'),
   require('../src/color-steels/TAKEAWAYNAILCOLOUR_54.png'),
-  require('../src/color-steels/TAKEAWAYNAILCOLOUR_54.png'),
+  require('../src/color-steels/TAKEAWAYNAILCOLOUR_55.png'),
   require('../src/color-steels/TAKEAWAYNAILCOLOUR_56.png'),
   require('../src/color-steels/TAKEAWAYNAILCOLOUR_57.png'),
   require('../src/color-steels/TAKEAWAYNAILCOLOUR_58.png'),
