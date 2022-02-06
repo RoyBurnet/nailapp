@@ -30,10 +30,9 @@ export default function ProductScreen({ route }) {
       <ImageBackground source={image} style={styles.imageContainer} />
       <View style={styles.textContainer}>
         <Text style={[styles.text, styles.textName]}>{name}</Text>
-        <Text style={[styles.text, styles.textPrice]}>{price}</Text>
         <Text style={[styles.text, styles.textInfo]}>{info}</Text>
         <TouchableOpacity style={styles.buyBtn}>
-          <Text style={[styles.text, styles.textBtn]}>Koop dit product</Text>
+          <Text style={[styles.text, styles.textBtn]}>Meer informatie</Text>
         </TouchableOpacity>
       </View>
     </View>

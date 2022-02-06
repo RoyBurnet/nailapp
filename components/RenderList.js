@@ -152,7 +152,6 @@ const styles = StyleSheet.create({
   },
   vorigeBtnContainer: {
     flex: 1,
-    width: wp("85%"),
     justifyContent: "center",
     alignItems: "center",
   },

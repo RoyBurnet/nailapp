@@ -62,12 +62,12 @@ const data = [
             info: "Door de speciale structuur van het glas houd je de nagelplaten perfect gesloten en komt er geen lucht tussen. Je nagels zijn weerbaarder tegen water en vuil. Bovendien voorkom je met de glazen nagelvijl dat je een zagende beweging maakt. De vijl maakt het alleen mogelijk om vanaf de zijkant richting het midden van de nagel te vijlen. Splijtende, brekende of scheurende nagels zijn dus verleden tijd.",
             price: "€ 11.48",
           },
-          {
-            name: "Cuticle Cream",
-            image: require("../src/images/products/cuticle-cream.png"),
-            info: "Deze rijke samenstelling van ingrediënten bevordert de wondheling en herstelt droge nagelriemen. De Cuticle Cream maakt je nagelriemen zacht en bestrijdt harde nagelriemranden, waardoor er geen vervelende velletjes of scheurtjes aan de nagelriemen ontstaan.",
-            price: "€ 9.55",
-          },
+          // {
+          //   name: "Cuticle Cream",
+          //   image: require("../src/images/products/cuticle-cream.png"),
+          //   info: "Deze rijke samenstelling van ingrediënten bevordert de wondheling en herstelt droge nagelriemen. De Cuticle Cream maakt je nagelriemen zacht en bestrijdt harde nagelriemranden, waardoor er geen vervelende velletjes of scheurtjes aan de nagelriemen ontstaan.",
+          //   price: "€ 9.55",
+          // },
           {
             name: "Caring Nail Polish Remover",
             image: require("../src/images/products/caring-nail-polish-remover.png"),
@@ -190,12 +190,12 @@ const data = [
           "De kleurpigmenten in een kleurlak kunnen zonder een Base Coat doordringen in de nagels. Gebruik daarom altijd een Base Coat onder een kleurlak.\n\nWij adviseren onderstaande producten voor een snel herstel van jouw gele nagels.",
         url: "https://www.herome.com/tips-advies/herstel-geel-verkleurde-nagels/",
         products: [
-          {
-            name: "Ridge Filling Base Coat",
-            image: require("../src/images/products/ridge-filling-base-coat.png"),
-            info: "De Ridge Filling Base Coat zorgt ervoor dat kleurpigmenten uit nagellak de nagels niet verkleuren. Bovendien egaliseert de basecoat een oneffen of ribbelige nagelplaat. De nagels worden gladder en mooi egaal.",
-            price: "€ 11.95",
-          },
+          // {
+          //   name: "Ridge Filling Base Coat",
+          //   image: require("../src/images/products/ridge-filling-base-coat.png"),
+          //   info: "De Ridge Filling Base Coat zorgt ervoor dat kleurpigmenten uit nagellak de nagels niet verkleuren. Bovendien egaliseert de basecoat een oneffen of ribbelige nagelplaat. De nagels worden gladder en mooi egaal.",
+          //   price: "€ 11.95",
+          // },
           {
             name: "Super Shine",
             image: require("../src/images/products/super-shine.png"),

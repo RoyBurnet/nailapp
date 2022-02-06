@@ -40,7 +40,6 @@ export default function AdviceComponent({ data, pressHandler }) {
           <View>
             <ImageBackground source={item.image} style={styles.productImage}>
               <View style={styles.productText}>
-                <Text style={styles.productPrice}>{item.price}</Text>
                 <Text style={styles.productName}>{item.name}</Text>
               </View>
             </ImageBackground>

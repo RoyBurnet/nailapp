@@ -130,7 +130,7 @@ const BuyNowButton = (props) => {
             style={styles.buyButton}
             onPress={() => handleOpenBrowser(url)}
           >
-            <Text style={styles.productTitleTextButton}>Nu kopen</Text>
+            <Text style={styles.productTitleTextButton}>meer informatie</Text>
           </TouchableOpacity>
         </View>
       )}
@@ -260,10 +260,10 @@ const styles = StyleSheet.create({
   productTitleTextButton: {
     color: "white",
     fontFamily: "Gilroy-Bold",
-    fontSize: hp("3%"),
+    fontSize: hp("2%"),
   },
   ctaContainer: {
-    width: wp("69%"),
+    width: wp("79%"),
     height: hp("10%"),
     bottom: hp("-35%"),
     left: wp("11%"),

@@ -30,7 +30,7 @@ function Questionaire({ title, listData, selectItem, fadeOut }) {
           />
         )}
         keyExtractor={(item) => item.id.toString()}
-        showsVerticalScrollIndicator={false}
+        showsVerticalScrollIndicator={true}
         extraData={listData}
         style={styles.listContainer}
       />
@@ -45,6 +45,8 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     marginTop: hp("10%"),
     marginBottom: hp("5%"),
+    width: wp('100%'), 
+    flex: 1,
   },
   listTitle: {
     top: hp("5%"),
