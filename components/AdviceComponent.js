@@ -12,35 +12,32 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { useFonts } from "expo-font";
+import product from "../src/products";
 
 export default function AdviceComponent({ data, pressHandler }) {
   const followUpAdvice = data[0]?.advice;
   const standardAvice = data?.standardAdvice?.advice;
   const followUpProducts = data[0]?.products;
   const standardProducts = data?.standardAdvice?.products;
-  const url = data[0]?.url;
-  const urlStandardAdvice = "https://www.herome.com/";
 
   const displayAdvice = followUpAdvice || standardAvice;
-  const productUrl = url || urlStandardAdvice;
   const productsItems = followUpProducts || standardProducts;
 
-  const navigateToProductScreen = (item) => pressHandler(item)
+  const navigateToProductScreen = (item) => pressHandler(item);
 
   const ProductTile = ({ item, index }) => {
+    let [fontsLoaded] = useFonts({
+      "Gilroy-Bold": require("../assets/fonts/Gilroy-Bold.ttf"),
+      "Gilroy-Regular": require("../assets/fonts/Gilroy-Regular.ttf"),
+    });
 
-      let [fontsLoaded] = useFonts({
-        "Gilroy-Bold": require("../assets/fonts/Gilroy-Bold.ttf"),
-        "Gilroy-Regular": require("../assets/fonts/Gilroy-Regular.ttf"),
-      });
-    
     return (
       <View style={styles.product} key={index}>
         <TouchableOpacity onPress={() => navigateToProductScreen(item)}>
           <View>
             <ImageBackground source={item.image} style={styles.productImage}>
               <View style={styles.productText}>
-                <Text style={styles.productName}>{item.name}</Text>
+                <Text style={styles.productName}>{item.productName}</Text>
               </View>
             </ImageBackground>
           </View>
@@ -49,14 +46,20 @@ export default function AdviceComponent({ data, pressHandler }) {
     );
   };
 
-  const mapProducts = productsItems?.map((item, index) => (
-    <ProductTile
-      item={item}
-      url={productUrl}
-      index={index}
-      key={index}
-    />
-  ));
+  const mapProducts = productsItems?.map((i) =>
+    product.map((item) => {
+      if (i === item.productName) {
+        return (
+          <ProductTile
+            item={item}
+            url={item.url}
+            index={item.id}
+            key={item.id}
+          />
+        );
+      }
+    })
+  );
 
   return (
     <React.Fragment>
@@ -123,7 +126,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
   },
   adviceTextContainer: {
-    height: 'auto',
+    height: "auto",
     marginTop: hp("15%"),
     width: wp("90%"),
     justifyContent: "center",
