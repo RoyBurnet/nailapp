@@ -16,7 +16,7 @@ import {
 import images from "../src/images";
 
 const Color = ({ item, index, handleColorPress }) => {
-  const _item = item - 25;
+  const _item = item - 5;
   
   return (
     <TouchableOpacity key={index} onPress={() => handleColorPress(_item)}>
