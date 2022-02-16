@@ -19,7 +19,12 @@ import { getNailType } from "../src/nailShapes.js";
 import NailColorContainer from "../components/HandPicker";
 import { useFonts } from "expo-font";
 import { ToggleIcon } from "../components/SvgImages/Icons";
-import ColorPalette from '../components/ColorPalette'
+import ColorPalette from "../components/ColorPalette";
+
+import DarkSkin from '../src/hands/skintones/Darkskin';
+import Europe from '../src/hands/skintones/Europe';
+import EastAsia from '../src/hands/skintones/EastAsia';
+import LightSkin from '../src/hands/skintones/LightSkin';
 
 const IconSkinType = require("../src/images/Skintype-icon.png");
 const IconNailLength = require("../src/images/nail-length-icon.png");
@@ -43,7 +48,12 @@ export default function NagellakPicker() {
       icon: [IconSkinType],
       description: "Selecteer de juiste skintone.",
       showMenu: false,
-      options: ["Dark skin", "Light skin", "Europe ", "East Asia"],
+      options: [
+        { "Dark skin": require("../src/skinColors/Ellipse-6.png") },
+        { "Light skin": require("../src/skinColors/Ellipse-4.png") },
+        { "Europe ": require("../src/skinColors/Ellipse-2.png") },
+        { "East Asia": require("../src/skinColors/Ellipse-7.png") },
+      ],
       selectedOption: [],
     },
     {
@@ -90,6 +100,12 @@ export default function NagellakPicker() {
 
   const handleColorPress = (item) => {
     setCurrentNailColor(item);
+    setShowMenuToFalse();
+    setCurrentMenu(undefined);
+  };
+
+  const handleSkinColorPress = (item) => {
+    setCurrentSkinColor(item);
     setShowMenuToFalse();
     setCurrentMenu(undefined);
   };
@@ -188,7 +204,15 @@ export default function NagellakPicker() {
             </View>
             {currentMenu[0].id === 3 ? (
               <View style={styles.palletInsideView}>
-                <ColorPalette handleColorPress={handleColorPress} />
+                <ColorPalette handleColorPress={handleColorPress} searchBar />
+              </View>
+            ) : currentMenu[0].id === 0 ? (
+              <View style={styles.palletInsideView}>
+                <ColorPalette
+                  handleSkinColorPress={handleSkinColorPress}
+                  colors={currentMenu[0].options}
+                  isSkinColor={true}
+                />
               </View>
             ) : (
               <TextItems />

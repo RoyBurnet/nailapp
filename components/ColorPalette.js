@@ -15,18 +15,48 @@ import {
 
 import images from "../src/images";
 
-const Color = ({ item, index, handleColorPress }) => {
+const Color = ({
+  item,
+  index,
+  handleColorPress,
+  handleSkinColorPress,
+  isSkinColor,
+}) => {
   const _item = item - 5;
-  
+  const skinColorPallet = Object.values(item);
+  const skinColorName = Object.keys(item);
+
+  const hasChosenColor = () => {
+    if (isSkinColor === true) {
+      handleSkinColorPress(skinColorName[0]);
+    } else {
+      handleColorPress(_item);
+    }
+  };
+
   return (
-    <TouchableOpacity key={index} onPress={() => handleColorPress(_item)}>
-      <Image style={styles.palletStyle} source={item} />
-    </TouchableOpacity>
+    <>
+      {isSkinColor ? (
+        <TouchableOpacity key={index} onPress={hasChosenColor}>
+          <Image style={styles.palletStyleSkin} source={skinColorPallet[0]} />
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity key={index} onPress={hasChosenColor}>
+          <Image style={styles.palletStyle} source={item} />
+        </TouchableOpacity>
+      )}
+    </>
   );
 };
 
-export default function ColorPalette({ handleColorPress }) {
-  const [pallets, setPallets] = useState(images);
+export default function ColorPalette({
+  handleColorPress,
+  searchBar,
+  colors,
+  isSkinColor,
+  handleSkinColorPress,
+}) {
+  const [pallets, setPallets] = useState([]);
   const [filterValue, setFilterValue] = useState(0);
   const [hasPickedColor, setHasPickedColor] = useState(false);
 
@@ -49,40 +79,58 @@ export default function ColorPalette({ handleColorPress }) {
   };
 
   useEffect(() => {
+    colors === undefined ? setPallets(images) : setPallets(colors);
+  }, [pallets]);
+
+  useEffect(() => {
     if (hasPickedColor) {
       setPallets([images[filterValue - 1]]);
     } else if (!hasPickedColor) {
-      return
+      return;
     }
   }, [filterValue, hasPickedColor]);
 
   return (
-    <ScrollView style={styles.colorPalletContainer}>
+    <ScrollView
+      style={
+        isSkinColor
+          ? styles.colorPalletContainerSkin
+          : styles.colorPalletContainer
+      }
+    >
       <View style={styles.colorPalletView}>
-        <View style={styles.searchBar}>
-          <TextInput
-            styles={styles.input}
-            keyboardType="numeric"
-            placeholder={"voer nummer in "}
-            maxLength={3}
-            numeric
-            value={0}
-            onChangeText={(value) => onValueChange(Number.parseInt(value))}
-          />
-        </View>
+        {searchBar ? <SearchBar /> : null}
         {pallets.map((item, index) => (
           <Color
             key={index}
             item={item}
             index={index}
             handleColorPress={handleColorPress}
+            handleSkinColorPress={handleSkinColorPress}
             hasPickedColor={hasPickedColor}
+            isSkinColor={isSkinColor}
           />
         ))}
       </View>
     </ScrollView>
   );
 }
+
+const SearchBar = () => {
+  return (
+    <View style={styles.searchBar}>
+      <TextInput
+        styles={styles.input}
+        keyboardType="numeric"
+        placeholder={"voer nummer in "}
+        maxLength={3}
+        numeric
+        value={0}
+        onChangeText={(value) => onValueChange(Number.parseInt(value))}
+      />
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   palletStyle: {
@@ -91,9 +139,20 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
     flexDirection: "row",
   },
+  palletStyleSkin: {
+    width: wp("15%"),
+    height: hp("10%"),
+    marginLeft: wp("2%"),
+    marginRight: wp("2%"),
+    resizeMode: "contain",
+    flexDirection: "row",
+  },
   colorPalletContainer: {
     alignSelf: "center",
     maxHeight: hp("30%"),
+  },
+  colorPalletContainerSkin: {
+    maxHeight: hp("10%"),
   },
   colorPalletView: {
     justifyContent: "center",
