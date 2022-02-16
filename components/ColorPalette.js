@@ -14,6 +14,17 @@ import {
 } from "react-native-responsive-screen";
 
 import images from "../src/images";
+import DarkSkin from "../src/hands/skintones/Darkskin";
+import Europe from "../src/hands/skintones/Europe";
+import EastAsia from "../src/hands/skintones/EastAsia";
+import LightSkin from "../src/hands/skintones/LightSkin";
+
+const componentMapping = {
+  "Dark skin": DarkSkin,
+  "Light skin": LightSkin,
+  "Europe ": Europe,
+  "East Asia": EastAsia
+};
 
 const Color = ({
   item,
@@ -23,8 +34,8 @@ const Color = ({
   isSkinColor,
 }) => {
   const _item = item - 5;
-  const skinColorPallet = Object.values(item);
   const skinColorName = Object.keys(item);
+  const Component = componentMapping[skinColorName]
 
   const hasChosenColor = () => {
     if (isSkinColor === true) {
@@ -38,7 +49,7 @@ const Color = ({
     <>
       {isSkinColor ? (
         <TouchableOpacity key={index} onPress={hasChosenColor}>
-          <Image style={styles.palletStyleSkin} source={skinColorPallet[0]} />
+          <Component style={styles.palletStyleSkin} />
         </TouchableOpacity>
       ) : (
         <TouchableOpacity key={index} onPress={hasChosenColor}>
@@ -140,10 +151,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   palletStyleSkin: {
-    width: wp("15%"),
+    width: wp("10%"),
     height: hp("10%"),
-    marginLeft: wp("2%"),
-    marginRight: wp("2%"),
+    marginLeft: wp("1%"),
+    marginRight: wp("1%"),
+    marginTop: hp('1%'),
     resizeMode: "contain",
     flexDirection: "row",
   },

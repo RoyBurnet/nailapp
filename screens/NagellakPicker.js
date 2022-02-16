@@ -21,11 +21,6 @@ import { useFonts } from "expo-font";
 import { ToggleIcon } from "../components/SvgImages/Icons";
 import ColorPalette from "../components/ColorPalette";
 
-import DarkSkin from '../src/hands/skintones/Darkskin';
-import Europe from '../src/hands/skintones/Europe';
-import EastAsia from '../src/hands/skintones/EastAsia';
-import LightSkin from '../src/hands/skintones/LightSkin';
-
 const IconSkinType = require("../src/images/Skintype-icon.png");
 const IconNailLength = require("../src/images/nail-length-icon.png");
 const IconNailShape = require("../src/images/nail-shape-icon.png");
