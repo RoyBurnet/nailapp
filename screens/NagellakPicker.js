@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useLayoutEffect } from "react";
 import {
   View,
   Text,
@@ -20,6 +20,9 @@ import NailColorContainer from "../components/HandPicker";
 import { useFonts } from "expo-font";
 import { ToggleIcon } from "../components/SvgImages/Icons";
 import ColorPalette from "../components/ColorPalette";
+import { useAssets } from "expo-asset";
+
+import MenuIconButtons from "../components/MenuIconButtons";
 
 const IconSkinType = require("../src/images/Skintype-icon.png");
 const IconNailLength = require("../src/images/nail-length-icon.png");
@@ -27,6 +30,8 @@ const IconNailShape = require("../src/images/nail-shape-icon.png");
 const IconNailColor = require("../src/images/nail-color-icon.png");
 
 export default function NagellakPicker() {
+  const [assets, error] = useAssets(images);
+
   useFonts({
     "Gilroy-Bold": require("../assets/fonts/Gilroy-Bold.ttf"),
   });
@@ -72,7 +77,7 @@ export default function NagellakPicker() {
       icon: [IconNailColor],
       description: "Selecteer hieronder de juiste kleur.",
       showMenu: false,
-      options: images,
+      options: assets,
       selectedOption: [],
     },
   ]);
@@ -114,9 +119,9 @@ export default function NagellakPicker() {
     setCurrentMenu(undefined);
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setSelectedNail(getNailType(nailShape, nailLength));
-  }, [nailLength, nailShape, nailColor]);
+  }, [nailLength, nailShape]);
 
   const MenuButtonContainer = () => {
     return (
@@ -235,11 +240,13 @@ export default function NagellakPicker() {
   };
 
   const ShowMenuContainer = () => {
+
     return (
       <>
         {hideOptions === false ? (
           <>
-            <MenuButtonContainer />
+            <MenuButtonContainer  />
+            {/* <MenuIconButtons/> */}
             <SubMenu />
           </>
         ) : null}

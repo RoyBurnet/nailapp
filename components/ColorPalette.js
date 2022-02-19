@@ -1,4 +1,8 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, {
+  useEffect,
+  useState,
+  useLayoutEffect,
+} from "react";
 import {
   View,
   TouchableOpacity,
@@ -12,6 +16,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
+
 
 import images from "../src/images";
 import DarkSkin from "../src/hands/skintones/Darkskin";
@@ -89,11 +94,11 @@ export default function ColorPalette({
     }
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     colors === undefined ? setPallets(images) : setPallets(colors);
   }, [pallets]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (hasPickedColor) {
       setPallets([images[filterValue - 1]]);
     } else if (!hasPickedColor) {
