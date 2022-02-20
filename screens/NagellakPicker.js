@@ -22,15 +22,20 @@ import { ToggleIcon } from "../components/SvgImages/Icons";
 import ColorPalette from "../components/ColorPalette";
 import { useAssets } from "expo-asset";
 
-import MenuIconButtons from "../components/MenuIconButtons";
-
-const IconSkinType = require("../src/images/Skintype-icon.png");
-const IconNailLength = require("../src/images/nail-length-icon.png");
-const IconNailShape = require("../src/images/nail-shape-icon.png");
-const IconNailColor = require("../src/images/nail-color-icon.png");
-
 export default function NagellakPicker() {
+  const IconSkinType = require("../src/images/Skintype-icon.png");
+  const IconNailLength = require("../src/images/nail-length-icon.png");
+  const IconNailShape = require("../src/images/nail-shape-icon.png");
+  const IconNailColor = require("../src/images/nail-color-icon.png");
+
   const [assets, error] = useAssets(images);
+  const [_icons, wrong] = useAssets([
+    require("../src/images/Skintype-icon.png"),
+    require("../src/images/nail-length-icon.png"),
+    require("../src/images/nail-shape-icon.png"),
+    require("../src/images/nail-color-icon.png"),
+  ]);
+
 
   useFonts({
     "Gilroy-Bold": require("../assets/fonts/Gilroy-Bold.ttf"),
@@ -126,10 +131,10 @@ export default function NagellakPicker() {
   const MenuButtonContainer = () => {
     return (
       <View style={styles.menuContainer}>
-        {submenuItems.map((item) => {
+        {submenuItems.map((item, index) => {
           return (
             <MenuButton
-              key={item.id}
+              key={index}
               icon={item.icon[0]}
               showPointer={item.showMenu}
               id={item.id}
@@ -141,18 +146,19 @@ export default function NagellakPicker() {
   };
 
   const MenuButton = (props) => {
-    return (
-      <View style={styles.btnContainer}>
-        <TouchableOpacity
-          onPress={() => {
-            handleButtonPress(props.id);
-          }}
-        >
-          <Image style={styles.icons} source={props.icon} />
-        </TouchableOpacity>
-        {props.showPointer ? <View style={styles.pointer} /> : null}
-      </View>
-    );
+    console.log(props);
+      return (
+        <View style={styles.btnContainer}>
+          <TouchableOpacity
+            onPress={() => {
+              handleButtonPress(props.id);
+            }}
+          >
+            <Image style={styles.icons} source={props.icon} />
+          </TouchableOpacity>
+          {props.showPointer ? <View style={styles.pointer} /> : null}
+        </View>
+      );
   };
 
   const SubMenuItem = ({ item, index, category }) => {
@@ -240,13 +246,12 @@ export default function NagellakPicker() {
   };
 
   const ShowMenuContainer = () => {
-
     return (
       <>
         {hideOptions === false ? (
           <>
-            <MenuButtonContainer  />
-            {/* <MenuIconButtons/> */}
+            <MenuButtonContainer />
+            {/* <MenuIconButtons /> */}
             <SubMenu />
           </>
         ) : null}

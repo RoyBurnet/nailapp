@@ -66,7 +66,6 @@ export default function Header(props) {
           ) : (
             <ShowBackButton navigation={navigation} colors={white} />
           )}
-
           <TouchableOpacity
             style={styles.burger}
             onPress={() => navigation.openDrawer()}
