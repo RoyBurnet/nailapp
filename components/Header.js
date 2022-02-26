@@ -39,12 +39,15 @@ const BigLogo = () => {
   );
 };
 
-const SmallLogo = (props) => {
-  const color = props.color ? "#FFF" : "#ACC9E8";
+const SmallLogo = ({navigation, color}) => {
+  const _color = color ? "#FFF" : "#ACC9E8";
   return (
-    <View style={styles.smallLogoContainer}>
-      <Qlogo color={color} />
-    </View>
+    <TouchableOpacity
+      style={styles.smallLogoContainer}
+      onPress={() => navigation.navigate("HomeScreen")}
+    >
+      <Qlogo color={_color} />
+    </TouchableOpacity>
   );
 };
 
@@ -60,7 +63,7 @@ export default function Header(props) {
     <View style={{ flex: 1, flexDirection: "column" }}>
       <View style={styles.header}>
         <View style={styles.headerContainer}>
-          {alternativeLogo ? <SmallLogo color={white} /> : <BigLogo />}
+          {alternativeLogo ? <SmallLogo color={white} navigation={ navigation}/> : <BigLogo />}
           {hideBackButton ? (
             <HideBackButton navigation={navigation} />
           ) : (
