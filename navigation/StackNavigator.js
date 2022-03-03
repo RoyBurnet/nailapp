@@ -7,7 +7,6 @@ import Login from "../screens/Login";
 import Register from "../screens/Register";
 import Loading from "../screens/Loading";
 import ResetPassword from "../screens/ResetPassword";
-import Playground from "../screens/Playground";
 import AdviesScreen from "../screens/AdviesScreen";
 import ProductScreen from "../screens/ProductScreen";
 import NagellakSubMenuScreen from "../screens/NagellakSubMenuScreen";
@@ -140,11 +139,6 @@ const HomeStackScreens = () => {
           <HomeStack.Screen
             name="ResetPassword"
             component={ResetPassword}
-            options={customHeader}
-          />
-          <HomeStack.Screen
-            name="Playground"
-            component={Playground}
             options={customHeader}
           />
           <HomeStack.Screen

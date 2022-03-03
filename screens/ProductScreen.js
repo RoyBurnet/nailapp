@@ -10,6 +10,7 @@ import {
 import { LinearGradient } from "expo-linear-gradient";
 import { useFonts } from "expo-font";
 import { BottomSheet } from "react-native-btr";
+import * as WebBrowser from "expo-web-browser";
 
 import {
   widthPercentageToDP as wp,
@@ -26,7 +27,12 @@ export default function ProductScreen({ route }) {
     setVisible(!visible);
   };
 
-  const { image, productName, howTo, effect } = route.params;
+    const handleOpenBrowser = async (url) => {
+      let result = await WebBrowser.openBrowserAsync(url);
+      setResult(result);
+    };
+
+  const { image, productName, howTo, effect, url } = route.params;
 
   return (
     <View style={styles.container}>
@@ -48,7 +54,10 @@ export default function ProductScreen({ route }) {
               + meer info
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.buyBtn}>
+          <TouchableOpacity
+            style={styles.buyBtn}
+            onPress={() => handleOpenBrowser(url)}
+          >
             <Text style={[styles.text, styles.textBtn]}>Meer informatie</Text>
           </TouchableOpacity>
         </View>

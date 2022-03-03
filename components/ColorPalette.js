@@ -1,8 +1,4 @@
-import React, {
-  useEffect,
-  useState,
-  useLayoutEffect,
-} from "react";
+import React, { useEffect, useState, useLayoutEffect } from "react";
 import {
   View,
   TouchableOpacity,
@@ -10,13 +6,13 @@ import {
   ScrollView,
   TextInput,
   StyleSheet,
+  Text,
 } from "react-native";
 
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-
 
 import images from "../src/images";
 import DarkSkin from "../src/hands/skintones/Darkskin";
@@ -28,7 +24,7 @@ const componentMapping = {
   "Dark skin": DarkSkin,
   "Light skin": LightSkin,
   "Europe ": Europe,
-  "East Asia": EastAsia
+  "East Asia": EastAsia,
 };
 
 const Color = ({
@@ -40,11 +36,11 @@ const Color = ({
 }) => {
   const _item = item - 5;
   const skinColorName = Object.keys(item);
-  const Component = componentMapping[skinColorName]
+  const Component = componentMapping[skinColorName];
 
-  const hasChosenColor = () => {
+  const hasChosenColor = (colorName) => {
     if (isSkinColor === true) {
-      handleSkinColorPress(skinColorName[0]);
+      handleSkinColorPress(colorName);
     } else {
       handleColorPress(_item);
     }
@@ -53,15 +49,39 @@ const Color = ({
   return (
     <>
       {isSkinColor ? (
-        <TouchableOpacity key={index} onPress={hasChosenColor}>
-          <Component style={styles.palletStyleSkin} />
-        </TouchableOpacity>
+        <SkinColor hasChosenColor={hasChosenColor} />
       ) : (
         <TouchableOpacity key={index} onPress={hasChosenColor}>
           <Image style={styles.palletStyle} source={item} />
         </TouchableOpacity>
       )}
     </>
+  );
+};
+
+const SkinColor = ({ hasChosenColor }) => {
+  function updateColor(color) {
+    hasChosenColor(color);
+  }
+  return (
+    <View style={styles.skinColorPalletContainer}>
+      <TouchableOpacity
+        onPress={() => {
+          updateColor("Dark skin");
+        }}
+      >
+        <DarkSkin style={styles.palletStyleSkin} />
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => updateColor("Light skin")}>
+        <LightSkin style={styles.palletStyleSkin} />
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => updateColor("Europe ")}>
+        <Europe style={styles.palletStyleSkin} />
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => updateColor("East Asia")}>
+        <EastAsia style={styles.palletStyleSkin} />
+      </TouchableOpacity>
+    </View>
   );
 };
 
@@ -155,14 +175,10 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
     flexDirection: "row",
   },
-  palletStyleSkin: {
-    width: wp("10%"),
-    height: hp("10%"),
-    marginLeft: wp("1%"),
-    marginRight: wp("1%"),
-    marginTop: hp('1%'),
-    resizeMode: "contain",
-    flexDirection: "row",
+  wink: {
+    position: "absolute",
+    top: hp("4%"),
+    left: wp("5%"),
   },
   colorPalletContainer: {
     alignSelf: "center",
@@ -188,5 +204,24 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     zIndex: 9999,
+  },
+  skinColorPalletContainer: {
+    // width: wp("100%"),
+    height: hp("10%"),
+    display: "flex",
+    flexDirection: "row",
+  },
+  palletStyleSkin: {
+    width: wp("10%"),
+    height: hp("10%"),
+    marginLeft: wp("1%"),
+    marginRight: wp("1%"),
+    marginTop: hp("1%"),
+    resizeMode: "contain",
+    flexDirection: "column",
+    position: "relative",
+  },
+  hidden: {
+    display: "none",
   },
 });

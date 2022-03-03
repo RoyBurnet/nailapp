@@ -51,20 +51,6 @@ function DrawerComponent(props) {
                 fontSize: hp("2.5%"),
               }}
             />
-            <DrawerItem
-              {...props}
-              label="Playground"
-              onPress={() => {
-                props.navigation.navigate("Playground", {
-                  screen: "Playground",
-                });
-              }}
-              labelStyle={{
-                fontFamily: "Gilroy-Bold",
-                color: "#ACC9E8",
-                fontSize: hp("2.5%"),
-              }}
-            />
           </>
         ) : (
           <>

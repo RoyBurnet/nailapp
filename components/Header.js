@@ -2,10 +2,8 @@ import React from "react";
 import {
   View,
   StyleSheet,
-  Image,
   TouchableOpacity,
   Platform,
-  Text,
 } from "react-native";
 import {
   widthPercentageToDP as wp,

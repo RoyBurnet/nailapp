@@ -127,10 +127,10 @@ export default function Login({ navigation }) {
               <View style={styles.socialButton}>
                 <GmailLogin socialSignIn={socialSignIn} />
               </View>
-              <View style={styles.socialButton}>
+              {/* <View style={styles.socialButton}>
                 <FBLogin socialSignIn={socialSignIn} />
-              </View>
-              <View style={styles.socialButton}>
+              </View> */}
+              {/* <View style={styles.socialButton}>
                 <TouchableOpacity
                   onPress={() =>
                     navigation.navigate("Home", { screen: "HomeScreen" })
@@ -138,7 +138,7 @@ export default function Login({ navigation }) {
                 >
                   <Image source={require("../src/images/twitterLogo.png")} />
                 </TouchableOpacity>
-              </View>
+              </View> */}
             </View>
             <View style={styles.noAccountContainer}>
               <View style={styles.register}>

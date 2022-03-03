@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useLayoutEffect } from "react";
+import React, { useEffect, useState, useLayoutEffect } from "react";
 import {
   View,
   Text,
@@ -13,7 +13,6 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
-import FastImage from "react-native-fast-image";
 import images from "../src/images.js";
 import { getNailType } from "../src/nailShapes.js";
 import NailColorContainer from "../components/HandPicker";
@@ -146,7 +145,6 @@ export default function NagellakPicker() {
   };
 
   const MenuButton = (props) => {
-    console.log(props);
       return (
         <View style={styles.btnContainer}>
           <TouchableOpacity
@@ -251,7 +249,6 @@ export default function NagellakPicker() {
         {hideOptions === false ? (
           <>
             <MenuButtonContainer />
-            {/* <MenuIconButtons /> */}
             <SubMenu />
           </>
         ) : null}
