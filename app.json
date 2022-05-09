@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "heromeexpo",
-    "slug": "heromeexpo",
+    "name": "Herome Nail App",
+    "slug": "HeromeNailApp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -13,9 +13,11 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "bundleIdentifier": "host.exp.exponent",
+      "bundleIdentifier": "com.herome.heromenailapp",
       "buildNumber": "1.0.0",
       "supportsTablet": true,
       "config": {
@@ -26,7 +28,7 @@
       "googleServicesFile": "./assets/firebase/GoogleService-Info.plist"
     },
     "android": {
-      "package": "com.yourcompany.yourappname",
+      "package": "com.herome.heromenailapp",
       "versionCode": 1,
       "googleServicesFile": "./assets/firebase/google-services.json",
       "adaptiveIcon": {
