@@ -58,7 +58,7 @@ export default function ProductScreen({ route }) {
             style={styles.buyBtn}
             onPress={() => handleOpenBrowser(url)}
           >
-            <Text style={[styles.text, styles.textBtn]}>Meer informatie</Text>
+            <Text style={[styles.text, styles.textBtn]}>Naar webshop</Text>
           </TouchableOpacity>
         </View>
       </View>

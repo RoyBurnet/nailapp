@@ -96,7 +96,7 @@ export default function ColorPalette({
   const [filterValue, setFilterValue] = useState(0);
   const [hasPickedColor, setHasPickedColor] = useState(false);
 
-  const onValueChange = (value) => {
+  const updateNumberValue = (value) => {
     const val = Number.parseInt(value);
 
     if (filterValue === 0) {
@@ -162,7 +162,7 @@ const SearchBar = () => {
         maxLength={3}
         numeric
         value={0}
-        onChangeText={(value) => onValueChange(Number.parseInt(value))}
+        onChangeText={(value) => updateNumberValue(Number.parseInt(value))}
       />
     </View>
   );

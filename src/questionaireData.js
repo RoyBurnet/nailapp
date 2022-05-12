@@ -18,7 +18,7 @@ const data = [
         isSelected: false,
         title: "Jouw persoonlijke hand- en nageladvies",
         advice:
-          "Harde nagels zijn een teken van uitdroging. Om jouw nagels weer optimaal te herstellen heb je een voedende olie nodig. \n\nOm splijtende nagels te voorkomen is het ook belangrijk om de juiste vijltechniek te hanteren. Deze techniek zorgt ervoor dat je de drie nagelplaten ‘seald’. Zo voorkom je dat schadelijke invloeden van buitenaf de nagel kwetsbaar maken. Gebruik een kwalitatieve vijl om je nagels te vijlen.\n\nWij adviseren de onderstaande producten om jouw harde en splijtende nagels te herstellen. Lees in het blogartikel meer over splijtende nagels.",
+          "Harde nagels zijn een teken van uitdroging. Om jouw nagels weer optimaal te herstellen heb je een voedende olie nodig. \n\nOm splijtende nagels te voorkomen is het ook belangrijk om de juiste vijltechniek te hanteren. Deze techniek zorgt ervoor dat je de drie nagelplaten 'sealed. Zo voorkom je dat schadelijke invloeden van buitenaf de nagel kwetsbaar maken. Gebruik een kwalitatieve vijl om je nagels te vijlen.\n\nWij adviseren de onderstaande producten om jouw harde en splijtende nagels te herstellen. Lees in het blogartikel meer over splijtende nagels.",
         url: "https://www.herome.com/tips-advies/nagelverzorging/gespleten-nagels-herstellen/?utm_source=herome&utm_medium=app&utm_campaign=splijtende-nagels-hard-ja",
         products: [
           "Nourishing Nail Oil",
@@ -32,7 +32,7 @@ const data = [
         isSelected: false,
         title: "Jouw persoonlijke hand- en nageladvies",
         advice:
-          "Zorg er met een kwalitatieve vijl voor dat je de drie nagelplaten, waaruit de nagel bestaat, dicht ‘seald’. Zo voorkom je dat schadelijke invloeden van buitenaf de nagel kwetsbaar kunnen maken. Deze kwetsbare nagels splijten namelijk veel sneller.\n\nWij adviseren de onderstaande producten voor het herstellen van jouw splijtende nagels. Lees in het blogartikel meer over splijtende nagels.",
+          "Zorg er met een kwalitatieve vijl voor dat je de drie nagelplaten, waaruit de nagel bestaat, dicht 'sealed. Zo voorkom je dat schadelijke invloeden van buitenaf de nagel kwetsbaar kunnen maken. Deze kwetsbare nagels splijten namelijk veel sneller.\n\nWij adviseren de onderstaande producten voor het herstellen van jouw splijtende nagels. Lees in het blogartikel meer over splijtende nagels.",
         url: "https://www.herome.com/tips-advies/nagelverzorging/gespleten-nagels-herstellen/?utm_source=herome&utm_medium=app&utm_campaign=splijtende-nagels-hard-nee",
         products: [
           "Nourishing Nail Oil",
@@ -45,7 +45,7 @@ const data = [
   {
     id: 22,
     category: "Nagels",
-    typeProblem: "slappe nageles",
+    typeProblem: "Slappe nagels",
     isSelected: false,
     hasAdditionalQuestions: true,
     nextQuestion: "Heb je kunstnagels gehad of langdurig medicijnen gebruikt?",
@@ -127,7 +127,7 @@ const data = [
   {
     id: 2,
     category: "Nagels",
-    typeProblem: "Gele nagles",
+    typeProblem: "Gele nagels",
     isSelected: false,
     hasAdditionalQuestions: true,
     nextQuestion: "Gebruik jij vaak gekleurde nagellak?",

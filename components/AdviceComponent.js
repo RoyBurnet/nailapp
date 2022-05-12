@@ -80,12 +80,9 @@ const styles = StyleSheet.create({
     marginBottom: hp("10%"),
   },
   product: {
-    paddingRight: wp("15%"),
-    paddingLeft: wp("5%"),
-    paddingBottom: hp("5%"),
-    paddingTop: hp("5%"),
     flex: 1,
     justifyContent: "center",
+    alignContent: 'center',
     alignItems: "center",
     alignSelf: "center",
     width: wp("90%"),

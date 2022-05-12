@@ -262,8 +262,9 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     paddingLeft: 0,
     color: "#ACC9E8",
-    fontFamily: "Gilroy-Regular",
+    fontFamily: "Gilroy-Bold",
     fontSize: wp("4%"),
+    fontWeight: 'bold'
   },
   inputLogo: {
     width: 20,

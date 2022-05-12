@@ -44,24 +44,24 @@ const TitleList = ({ pressHandler }) => {
     },
     {
       id: "2",
-      title: "Nagellak",
-      image: imageNagelLak,
-      pressHandler: pressHandler,
-      route: "NagellakSubMenuScreen",
-    },
-    {
-      id: "3",
       title: "Nagels",
       image: imageNagels,
       pressHandler: pressHandler,
       route: "NagelsQuestionaire",
     },
     {
-      id: "4",
+      id: "3",
       title: "Nagelriemen",
       image: imageNagelRiemen,
       pressHandler: pressHandler,
       route: "NagelreimenQuestionaire",
+    },
+    {
+      id: "4",
+      title: "Nagellak",
+      image: imageNagelLak,
+      pressHandler: pressHandler,
+      route: "NagellakSubMenuScreen",
     },
   ];
 
