@@ -216,6 +216,7 @@ export default function NagellakPicker() {
                   handleSkinColorPress={handleSkinColorPress}
                   colors={currentMenu[0].options}
                   isSkinColor={true}
+                  preventScroll
                 />
               </View>
             ) : (
@@ -386,7 +387,7 @@ const styles = StyleSheet.create({
   },
   line: {
     borderBottomColor: "#ACC9E8",
-    borderBottomWidth: 0.5,
+    borderBottomWidth: 1,
     width: wp("75%"),
     marginLeft: 20,
   },

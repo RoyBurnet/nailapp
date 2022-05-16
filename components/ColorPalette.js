@@ -91,14 +91,27 @@ export default function ColorPalette({
   colors,
   isSkinColor,
   handleSkinColorPress,
+  preventScroll
 }) {
-  const [pallets, setPallets] = useState([]);
+  const [pallets, setPallets] = useState(images);
   const [filterValue, setFilterValue] = useState(0);
   const [hasPickedColor, setHasPickedColor] = useState(false);
 
-  const updateNumberValue = (value) => {
-    const val = Number.parseInt(value);
+  // useEffect(() => {
+  //   colors === undefined ? setPallets(images) : setPallets(colors);
+  // }, [pallets]);
 
+  useEffect(() => {
+    if (hasPickedColor) {
+      setPallets([images[filterValue - 1]]);
+    } else if (!hasPickedColor) {
+      return;
+    }
+  }, [filterValue, hasPickedColor]);
+
+  const updateNumberValue = (value) => {
+
+    const val = Number.parseInt(value);
     if (filterValue === 0) {
       setPallets(images);
     }
@@ -114,17 +127,6 @@ export default function ColorPalette({
     }
   };
 
-  useLayoutEffect(() => {
-    colors === undefined ? setPallets(images) : setPallets(colors);
-  }, [pallets]);
-
-  useLayoutEffect(() => {
-    if (hasPickedColor) {
-      setPallets([images[filterValue - 1]]);
-    } else if (!hasPickedColor) {
-      return;
-    }
-  }, [filterValue, hasPickedColor]);
 
   return (
     <ScrollView
@@ -133,9 +135,10 @@ export default function ColorPalette({
           ? styles.colorPalletContainerSkin
           : styles.colorPalletContainer
       }
+      scrollEnabled={preventScroll ?false : true}
     >
       <View style={styles.colorPalletView}>
-        {searchBar ? <SearchBar /> : null}
+        {searchBar ? <SearchBar updateNumberValue={updateNumberValue} /> : null}
         {pallets.map((item, index) => (
           <Color
             key={index}
@@ -152,7 +155,7 @@ export default function ColorPalette({
   );
 }
 
-const SearchBar = () => {
+const SearchBar = ({updateNumberValue}) => {
   return (
     <View style={styles.searchBar}>
       <TextInput
@@ -162,7 +165,7 @@ const SearchBar = () => {
         maxLength={3}
         numeric
         value={0}
-        onChangeText={(value) => updateNumberValue(Number.parseInt(value))}
+        onChangeText={(value) => updateNumberValue((value))}
       />
     </View>
   );

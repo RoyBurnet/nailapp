@@ -61,7 +61,7 @@ const TitleList = ({ pressHandler }) => {
       title: "Nagellak",
       image: imageNagelLak,
       pressHandler: pressHandler,
-      route: "NagellakSubMenuScreen",
+      route: "NagellakPicker",
     },
   ];
 
